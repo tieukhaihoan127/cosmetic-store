@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+:root{
+    --pink-pearl: #EFAFCA;
+    --muted-pink: #D17795;
+    --pearl: #FFEBF2;
+    --text_primary: #797979;
+    --text_secondary: #FAFAFA;
+}

@@ -1,10 +1,9 @@
 import React from 'react'
+import HeaderClient from '../layouts/header/HeaderClient'
 
 const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <HeaderClient/>
   )
 }
 
