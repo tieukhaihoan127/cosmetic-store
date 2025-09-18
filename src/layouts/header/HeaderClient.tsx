@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import { useTheme } from "@mui/material/styles";
 import HeaderTextCarousel from "../components/HeaderTextCarousel";
+import HeaderCategoryCarousel from "../components/HeaderCategoryCarousel";
 
 export default function HeaderClient() {
 
@@ -72,6 +73,9 @@ export default function HeaderClient() {
             </div>
             <div className="w-[90%] mx-auto">
                 <SearchProduct isMobile={true}/>
+            </div>
+            <div className="max-w-[1366px] mx-auto">
+                <HeaderCategoryCarousel/>
             </div>
         </header>
     ); 

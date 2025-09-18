@@ -66,7 +66,7 @@ export default function HeaderMenu() {
       >
         <MenuItem onClick={handleClose} disableRipple sx={{
             "&:hover": {
-            backgroundColor: "transparent" 
+              backgroundColor: "transparent" 
             }
         }}>
             <HeaderMenuActionItem icon={<QuestionAnswerSharpIcon sx={{ fontSize: 30 }}/>} label="Trung tâm hỗ trợ" to="/help-center"/>
