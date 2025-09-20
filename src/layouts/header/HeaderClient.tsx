@@ -74,7 +74,7 @@ export default function HeaderClient() {
             <div className="w-[90%] mx-auto">
                 <SearchProduct isMobile={true}/>
             </div>
-            <div className="max-w-[1366px] mx-auto">
+            <div className="mx-auto max-w-[89%] [@media(max-width:1524px)]:max-w-[90%] md:block sm:hidden max-sm:hidden">
                 <HeaderCategoryCarousel/>
             </div>
         </header>

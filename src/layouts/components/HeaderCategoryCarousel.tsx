@@ -13,13 +13,13 @@ const HeaderCategoryCarousel = () => {
 
 
   return (
-    <div className='flex items-center justify-center'>
-      <button className={`custom-prev absolute left-10 z-10 bg-[var(--text_primary)] w-[20px] h-[20px] flex items-center justify-center rounded-full hover:cursor-pointer transition-opacity ${
+    <div className='flex items-center w-full header-carousel'>
+      <button className={`custom-prev absolute [@media(min-width:1454px)]:left-10 [@media(min-width:1260px)]:left-8 [@media(min-width:984px)]:left-6 [@media(min-width:797px)]:left-4 left-2 z-10 bg-[var(--text_primary)] w-[20px] h-[20px] flex items-center justify-center rounded-full hover:cursor-pointer transition-opacity ${
           isBeginning ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}>
         <NavigateBeforeOutlinedIcon sx={{ fontSize: "20px", color: "white" }} />
       </button>
-      <Swiper modules={[Navigation]} navigation={{ prevEl: ".custom-prev", nextEl: ".custom-next" }} slidesPerView="auto" spaceBetween={20} onSwiper={(swiper) => {
+      <Swiper modules={[Navigation]} navigation={{ prevEl: ".custom-prev", nextEl: ".custom-next" }} slidesPerView="auto" slidesPerGroup={10} spaceBetween={20} watchOverflow={true} centeredSlides={false} onSwiper={(swiper) => {
           setIsBeginning(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}
@@ -27,7 +27,13 @@ const HeaderCategoryCarousel = () => {
           setIsBeginning(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}
-        className="mySwiper">
+        onResize={(swiper) => {   
+          swiper.update();
+          setIsBeginning(swiper.isBeginning);
+          setIsEnd(swiper.isEnd);
+        }}
+        className="flex h-max overflow-x-auto overflow-y-hidden  w-full justify-start"
+        >
         <SwiperSlide className='w-auto'>
           <HeaderCategoryButton content='Thương hiệu' to='/' />
         </SwiperSlide>
@@ -59,7 +65,7 @@ const HeaderCategoryCarousel = () => {
           <HeaderCategoryButton content='Mã giảm' to='/' />
         </SwiperSlide>
       </Swiper>
-      <button className={`custom-next absolute right-10 z-10 bg-[var(--text_primary)] w-[20px] h-[20px] flex items-center justify-center rounded-full hover:cursor-pointer transition-opacity ${
+      <button className={`custom-next absolute [@media(min-width:1454px)]:right-10 [@media(min-width:1260px)]:right-8 [@media(min-width:984px)]:right-6 [@media(min-width:797px)]:right-4 right-2 z-10 bg-[var(--text_primary)] w-[20px] h-[20px] flex items-center justify-center rounded-full hover:cursor-pointer transition-opacity ${
           isEnd ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}>
         <NavigateNextOutlinedIcon sx={{ fontSize: "20px", color: "white" }} />
