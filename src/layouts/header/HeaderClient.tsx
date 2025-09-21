@@ -13,6 +13,7 @@ import Divider from "@mui/material/Divider";
 import { useTheme } from "@mui/material/styles";
 import HeaderTextCarousel from "../components/HeaderTextCarousel";
 import HeaderCategoryCarousel from "../components/HeaderCategoryCarousel";
+import HeaderSidebar from "../components/HeaderSidebar";
 
 export default function HeaderClient() {
 
@@ -77,6 +78,7 @@ export default function HeaderClient() {
             <div className="mx-auto max-w-[89%] [@media(max-width:1524px)]:max-w-[90%] md:block sm:hidden max-sm:hidden">
                 <HeaderCategoryCarousel/>
             </div>
+            <HeaderSidebar/>
         </header>
     ); 
 }
