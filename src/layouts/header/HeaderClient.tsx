@@ -6,7 +6,6 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import HeaderActionItem from "../components/HeaderActionItem";
-import MenuIcon from '@mui/icons-material/Menu';
 import HeaderMenu from "../components/HeaderMenu";
 import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
@@ -38,7 +37,7 @@ export default function HeaderClient() {
             <div className="flex h-[80px] max-md:h-[65px]">
                 <div className="w-[90%] max-w-[1366px] mx-auto flex item-center justify-between">
                     <button className="min-md:hidden">
-                        <MenuIcon sx={{ fontSize: 25 }}/>
+                        <HeaderSidebar/>
                     </button>
                     <Link to={"/"} className="flex items-center max-md:pl-5">
                         <img src={logo1} alt="Logo Image" className="object-contain w-[180px] h-[40px] [@media(max-width:576px)]:w-[150px]"/>
@@ -78,7 +77,6 @@ export default function HeaderClient() {
             <div className="mx-auto max-w-[89%] [@media(max-width:1524px)]:max-w-[90%] md:block sm:hidden max-sm:hidden">
                 <HeaderCategoryCarousel/>
             </div>
-            <HeaderSidebar/>
         </header>
     ); 
 }
