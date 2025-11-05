@@ -7,7 +7,12 @@ import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlin
 import HeaderCategoryButton from './HeaderCategoryButton';
 import { useState } from 'react';
 
-const HeaderCategoryCarousel = () => {
+interface HeaderCategoryCarouselProps {
+  onHoverCategory: (category: string) => void;
+  onLeaveCategory: () => void;
+}
+
+const HeaderCategoryCarousel = ({ onHoverCategory, onLeaveCategory } : HeaderCategoryCarouselProps) => {
   const [isBeginning, setIsBeginning] = useState<boolean>(true);
   const [isEnd, setIsEnd] = useState<boolean>(false);
 
@@ -35,7 +40,7 @@ const HeaderCategoryCarousel = () => {
         className="flex h-max overflow-x-auto overflow-y-hidden  w-full justify-start"
         >
         <SwiperSlide className='w-auto'>
-          <HeaderCategoryButton content='Thương hiệu' to='/' />
+          <HeaderCategoryButton content='Thương hiệu' to='/' onHover={() => onHoverCategory('Thương hiệu')} onLeave={onLeaveCategory}/>
         </SwiperSlide>
         <SwiperSlide className='w-auto'>
           <HeaderCategoryButton content='Khuyến mãi hot' to='/' />

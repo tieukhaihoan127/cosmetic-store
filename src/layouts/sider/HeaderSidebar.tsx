@@ -324,7 +324,7 @@ export default function HeaderSidebar() {
       <React.Fragment key={item.key}>
         <ListItem disablePadding>
           <ListItemButton
-            onClick={() => level === 0 && item.children && handleToggle(item.key)} // chỉ toggle ở level 0
+            onClick={() => level === 0 && item.children && handleToggle(item.key)} 
             disableRipple
             sx={{
               display: "flex",
