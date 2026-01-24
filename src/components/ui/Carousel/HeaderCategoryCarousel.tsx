@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
 import NavigateBeforeOutlinedIcon from '@mui/icons-material/NavigateBeforeOutlined';
-import HeaderCategoryButton from './HeaderCategoryButton';
+import HeaderCategoryButton from '../Button/HeaderCategoryButton';
 import { useState } from 'react';
 
 interface HeaderCategoryCarouselProps {

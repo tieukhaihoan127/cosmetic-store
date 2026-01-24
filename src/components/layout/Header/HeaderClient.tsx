@@ -1,20 +1,19 @@
-import logo1 from "../../assets/images/logo1.webp";
-import SearchProduct from "../components/SearchProduct";
+import logo1 from "../../../assets/images/logo1.webp";
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import HeaderActionItem from "../components/HeaderActionItem";
-import HeaderMenu from "../components/HeaderMenu";
 import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import { useTheme } from "@mui/material/styles";
-import HeaderTextCarousel from "../components/HeaderTextCarousel";
-import HeaderCategoryCarousel from "../components/HeaderCategoryCarousel";
-import HeaderMenuHover from "../components/HeaderMenuHover";
 import { useState } from "react";
-import HeaderSidebar from "../sider/HeaderSidebar";
+import HeaderTextCarousel from "../../ui/Carousel/HeaderTextCarousel";
+import HeaderSidebar from "../../ui/Sidebar/HeaderSidebar";
+import SearchProduct from "../../ui/SearchBar/SearchProduct";
+import HeaderActionItem from "../../ui/Menu/HeaderActionItem";
+import HeaderMenu from "../../ui/Menu/HeaderMenu";
+import HeaderCategoryCarousel from "../../ui/Carousel/HeaderCategoryCarousel";
 
 export default function HeaderClient() {
 
@@ -80,7 +79,7 @@ export default function HeaderClient() {
             <div className="mx-auto max-w-[90%] md:block sm:hidden max-sm:hidden">
                 <HeaderCategoryCarousel onHoverCategory={(category) => setHoveredCategory(category)} onLeaveCategory={() => setHoveredCategory(null)}/>
             </div>
-            {hoveredCategory === "Thương hiệu" && <HeaderMenuHover />}
+            {hoveredCategory === "Thương hiệu" && <HeaderMenu />}
         </header>
     ); 
 }
