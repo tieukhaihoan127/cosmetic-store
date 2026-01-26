@@ -14,6 +14,7 @@ import SearchProduct from "../../ui/SearchBar/SearchProduct";
 import HeaderActionItem from "../../ui/Menu/HeaderActionItem";
 import HeaderMenu from "../../ui/Menu/HeaderMenu";
 import HeaderCategoryCarousel from "../../ui/Carousel/HeaderCategoryCarousel";
+import HeaderMenuHover from "../../ui/Menu/HeaderMenuHover";
 
 export default function HeaderClient() {
 
@@ -79,7 +80,7 @@ export default function HeaderClient() {
             <div className="mx-auto max-w-[90%] md:block sm:hidden max-sm:hidden">
                 <HeaderCategoryCarousel onHoverCategory={(category) => setHoveredCategory(category)} onLeaveCategory={() => setHoveredCategory(null)}/>
             </div>
-            {hoveredCategory === "Thương hiệu" && <HeaderMenu />}
+            {hoveredCategory === "Thương hiệu" && <HeaderMenuHover />}
         </header>
     ); 
 }

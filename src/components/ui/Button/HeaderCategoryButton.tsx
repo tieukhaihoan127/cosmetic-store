@@ -10,7 +10,7 @@ interface HeaderCategoryButtonProps {
 
 const HeaderCategoryButton = ({ content, to, onHover, onLeave }: HeaderCategoryButtonProps) => {
   return (
-    <div className="inline-block" onMouseEnter={onHover}>
+    <div className="inline-block" onMouseEnter={onHover} onMouseLeave={onLeave}>
       <Link to={to} style={{ textDecoration: "none" }}>
         <Button
           variant="outlined"

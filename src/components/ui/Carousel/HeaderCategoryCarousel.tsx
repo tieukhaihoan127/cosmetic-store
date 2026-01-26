@@ -37,7 +37,7 @@ const HeaderCategoryCarousel = ({ onHoverCategory, onLeaveCategory } : HeaderCat
           setIsBeginning(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}
-        className="flex h-max overflow-x-auto overflow-y-hidden  w-full justify-start"
+        className="flex h-max overflow-x-auto overflow-y-hidden w-full justify-start"
         >
         <SwiperSlide className='w-auto'>
           <HeaderCategoryButton content='Thương hiệu' to='/' onHover={() => onHoverCategory('Thương hiệu')} onLeave={onLeaveCategory}/>
