@@ -15,11 +15,24 @@ import HeaderActionItem from "../../ui/Menu/HeaderActionItem";
 import HeaderMenu from "../../ui/Menu/HeaderMenu";
 import HeaderCategoryCarousel from "../../ui/Carousel/HeaderCategoryCarousel";
 import HeaderMenuHover from "../../ui/Menu/HeaderMenuHover";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { clearHoveredCategory, setHoveredCategory } from "../../../store/slices/hoveredMenuSlice";
 
 export default function HeaderClient() {
 
     const theme = useTheme();
-    const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
+    const dispatch = useAppDispatch();
+
+    const hoveredCategory = useAppSelector((state) => state.hoveredMenu.hoveredCategory);
+
+    const handleHoverCategory = (category : string) => {
+        dispatch(setHoveredCategory(category));
+    }
+
+    const handleLeaveCategory = () => {
+        dispatch(clearHoveredCategory());
+    }
 
     return(
         <header className="relative">
@@ -78,7 +91,7 @@ export default function HeaderClient() {
                 <SearchProduct isMobile={true}/>
             </div>
             <div className="mx-auto max-w-[90%] md:block sm:hidden max-sm:hidden">
-                <HeaderCategoryCarousel onHoverCategory={(category) => setHoveredCategory(category)} onLeaveCategory={() => setHoveredCategory(null)}/>
+                <HeaderCategoryCarousel onHoverCategory={handleHoverCategory} onLeaveCategory={handleLeaveCategory}/>
             </div>
             {hoveredCategory === "Thương hiệu" && <HeaderMenuHover />}
         </header>
