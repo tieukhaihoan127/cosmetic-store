@@ -7,7 +7,6 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import { useTheme } from "@mui/material/styles";
-import { useState } from "react";
 import HeaderTextCarousel from "../../ui/Carousel/HeaderTextCarousel";
 import HeaderSidebar from "../../ui/Sidebar/HeaderSidebar";
 import SearchProduct from "../../ui/SearchBar/SearchProduct";
