@@ -1,12 +1,12 @@
 import HeaderClient from "../components/layout/Header/HeaderClient"
-import HomeCarousel from "../components/ui/Carousel/HomeCarousel"
+import HomePage from "../pages/HomePage"
 
 
 const MainLayout = () => {
   return (
     <div>
         <HeaderClient/>
-        <HomeCarousel/>
+        <HomePage/>
     </div>
   )
 }

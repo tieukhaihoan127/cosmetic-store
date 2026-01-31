@@ -1,17 +1,23 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, EffectCoverflow } from 'swiper/modules';
+import { Pagination, Navigation, EffectCoverflow, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const HomeCarousel = () => {
   return (
     <Swiper
-      pagination={true}
+      pagination={{
+        clickable: true,
+      }}
       navigation={true}
       centeredSlides={true}
       slidesPerView={'auto'}
       loop={true}
-      modules={[Pagination, Navigation, EffectCoverflow]}
-      className='mySwiper mt-2 relative'
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
+      modules={[Pagination, Navigation, EffectCoverflow, Autoplay]}
+      className='bannerSwiper mt-2 relative'
     >
       <SwiperSlide className='carousel-slide'>
         <Link to={'/'} className='block h-full'>
