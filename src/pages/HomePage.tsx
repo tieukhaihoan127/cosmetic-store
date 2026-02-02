@@ -1,4 +1,5 @@
 import BrandCarousel from '../components/ui/Carousel/BrandCarousel'
+import FlashSaleCarousel from '../components/ui/Carousel/FlashSaleCarousel'
 import HomeCarousel from '../components/ui/Carousel/HomeCarousel'
 
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
     <div>
         <HomeCarousel/>
         <BrandCarousel/>
+        <FlashSaleCarousel/>
     </div>
   )
 }
