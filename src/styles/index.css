@@ -68,7 +68,7 @@ body {
 .brandSwiper .swiper-button-next,
 .brandSwiper .swiper-button-prev {
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.63);
   filter: brightness(0.8);
   width: 45px;
   height: 45px;
@@ -90,32 +90,16 @@ body {
   color: #FFFFFF;
 }
 
+.brandSwiper .swiper-button-next.swiper-button-disabled,
+.brandSwiper .swiper-button-prev.swiper-button-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Sale Carousel */
-.saleSwiper .swiper-button-next,
-.saleSwiper .swiper-button-prev {
-  position: absolute;
-  background: #FFFFFF;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
-
-.saleSwiper .swiper-button-next {
-  right: -24px!important;
-}
-
-.saleSwiper .swiper-button-prev {
-  left: -24px!important;
-}
-
-.saleSwiper .swiper-button-next svg,
-.saleSwiper .swiper-button-prev svg {
-  width: 20%;
-  color: #000000;
-}
-
-.saleSwiper .swiper-pagination-bullet-active {
-  background: #ff6b9d;
+.saleSwiper .flash-prev.swiper-button-disabled,
+.saleSwiper .flash-next.swiper-button-disabled {
+  opacity: 0;
+  pointer-events: none;
 }
 
