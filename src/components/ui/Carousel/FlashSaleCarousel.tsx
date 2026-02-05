@@ -8,7 +8,7 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 
 const FlashSaleCarousel = () => {
   return (
-    <div className='bg-[#7233A2] m-auto mt-10 w-[90%] px-[40px] py-[35px] rounded-3xl relative saleSwiper'>
+    <div className='bg-[#7233A2] m-auto mt-10 w-[90%] px-[40px] pt-[35px] [@media(max-width:820px)]:pb-[35px] rounded-3xl relative saleSwiper'>
       <div className='flex items-center w-full max-md:flex-col max-md:gap-4'>
         <div className='flex-[3] flex items-center [@media(max-width:820px)]:flex-[5] max-md:flex-none max-md:w-full max-md:justify-center'>
           <img src="https://image.hsv-tech.io/1920x0/bbx/common/dcfcdba0-ef41-4a57-9936-1d563ed63889.webp" alt="" className='object-cover max-w-[80%] max-md:max-w-[100%]' />
@@ -16,23 +16,23 @@ const FlashSaleCarousel = () => {
         <div className='flex-[4] flex justify-start [@media(max-width:820px)]:flex-[5] [@media(max-width:820px)]:justify-end max-md:flex-none max-md:justify-center'>
           <div className='flex bg-white px-[12px] py-[8px] rounded-3xl w-auto items-center'>
             <div className='px-[8px] flex items-center'>
-              <div className='mr-[4px] text-[#020c6b] leading-[24px]'>00</div>
-              <div className='text-[#020c6b] text-sm'>ngày</div>
+              <div className='mr-[4px] text-[#020c6b] leading-[24px] [@media(max-width:576px)]:text-[14px]'>00</div>
+              <div className='text-[#020c6b] text-sm [@media(max-width:576px)]:text-[12px]'>ngày</div>
             </div>
-            <div className='text-sm text-[#020c6b]'>|</div>
+            <div className='text-sm text-[#020c6b] [@media(max-width:576px)]:text-[12px]'>|</div>
             <div className='px-[8px] flex items-center'>
-              <div className='mr-[4px] text-[#020c6b] leading-[24px]'>01</div>
-              <div className='text-[#020c6b] text-sm'>giờ</div>
+              <div className='mr-[4px] text-[#020c6b] leading-[24px] [@media(max-width:576px)]:text-[14px]'>01</div>
+              <div className='text-[#020c6b] text-sm [@media(max-width:576px)]:text-[12px]'>giờ</div>
             </div>
-            <div className='text-sm text-[#020c6b]'>|</div>
+            <div className='text-sm text-[#020c6b] [@media(max-width:576px)]:text-[12px]'>|</div>
             <div className='px-[8px] flex items-center'>
-              <div className='mr-[4px] text-[#020c6b] leading-[24px]'>20</div>
-              <div className='text-[#020c6b] text-sm'>phút</div>
+              <div className='mr-[4px] text-[#020c6b] leading-[24px] [@media(max-width:576px)]:text-[14px]'>20</div>
+              <div className='text-[#020c6b] text-sm [@media(max-width:576px)]:text-[12px]'>phút</div>
             </div>
-            <div className='text-sm text-[#020c6b]'>|</div>
+            <div className='text-sm text-[#020c6b] [@media(max-width:576px)]:text-[12px]'>|</div>
             <div className='px-[8px] flex items-center'>
-              <div className='mr-[4px] text-[#020c6b] leading-[24px]'>30</div>
-              <div className='text-[#020c6b] text-sm'>giây</div>
+              <div className='mr-[4px] text-[#020c6b] leading-[24px] [@media(max-width:576px)]:text-[14px]'>30</div>
+              <div className='text-[#020c6b] text-sm [@media(max-width:576px)]:text-[12px]'>giây</div>
             </div>
           </div>
         </div>
@@ -89,10 +89,10 @@ const FlashSaleCarousel = () => {
             <ProductCard />
           </SwiperSlide>
         </Swiper>
-        <div className="flash-prev absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer bg-white left-[-65px] top-[35%] shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)]">
+        <div className="flash-prev absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer bg-white left-[-65px] top-[35%] shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)] [@media(max-width:576px)]:left-[-55px]">
           <ArrowBackIosNewOutlinedIcon sx={{ fontSize: 18 }}/>
         </div>
-        <div className="flash-next absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer bg-white right-[-65px] top-[35%] shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)]">
+        <div className="flash-next absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer bg-white right-[-65px] top-[35%] shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)] [@media(max-width:576px)]:right-[-55px]">
           <ArrowForwardIosOutlinedIcon sx={{ fontSize: 18 }}/>
         </div> 
       </div>

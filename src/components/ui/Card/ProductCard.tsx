@@ -11,8 +11,8 @@ const ProductCard = () => {
             <img src="https://image.hsv-tech.io/400x0/bbx/common/9d0ffd41-19f9-4c1f-9aab-31c7662f058e.webp" alt="" className='absolute bottom-0'/>
             <FavoriteBorderIcon sx={{ fontSize: 25, position: 'absolute', top: 15, right: 10, cursor: 'pointer' }}/>
             <div className='absolute top-[10px] left-[10px]'>
-                <div className='bg-black text-white rounded-full w-[45px] h-[45px] flex items-center justify-center text-sm mb-3'>MỚI</div>
-                <div className='bg-black text-white rounded-full w-[45px] h-[45px] flex items-center justify-center text-sm'>20%</div>
+                <div className='bg-black text-white rounded-full w-[45px] h-[45px] flex items-center justify-center text-sm mb-3 [@media(max-width:576px)]:w-[30px] [@media(max-width:576px)]:h-[30px] [@media(max-width:576px)]:text-[10px]'>MỚI</div>
+                <div className='bg-black text-white rounded-full w-[45px] h-[45px] flex items-center justify-center text-sm [@media(max-width:576px)]:w-[30px] [@media(max-width:576px)]:h-[30px] [@media(max-width:576px)]:text-[10px]'>20%</div>
             </div>
         </div>
         <div className='text-center p-[14px]'>
