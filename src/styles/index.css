@@ -103,3 +103,11 @@ body {
   pointer-events: none;
 }
 
+/* Banner Carousel */
+.bannerSwiper .-prev.swiper-button-disabled,
+.bannerSwiper .next.swiper-button-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
