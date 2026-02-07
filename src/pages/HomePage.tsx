@@ -1,3 +1,4 @@
+import AdvertisementCarousel from '../components/ui/Carousel/AdvertisementCarousel'
 import BrandCarousel from '../components/ui/Carousel/BrandCarousel'
 import FlashSaleCarousel from '../components/ui/Carousel/FlashSaleCarousel'
 import HomeBannerCarousel from '../components/ui/Carousel/HomeBannerCarousel'
@@ -23,6 +24,7 @@ const HomePage = () => {
             <div className='rounded-[38px] bg-[#f6f6f6] px-[20px] py-[10px] text-sm'>kem chống nắng</div>
           </div>
         </div>
+        <AdvertisementCarousel/>
     </div>
   )
 }
