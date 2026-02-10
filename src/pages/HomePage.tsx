@@ -1,4 +1,5 @@
 import AdvertisementCarousel from '../components/ui/Carousel/AdvertisementCarousel'
+import BlogCarousel from '../components/ui/Carousel/BlogCarousel'
 import BrandCarousel from '../components/ui/Carousel/BrandCarousel'
 import FlashSaleCarousel from '../components/ui/Carousel/FlashSaleCarousel'
 import HomeBannerCarousel from '../components/ui/Carousel/HomeBannerCarousel'
@@ -25,6 +26,7 @@ const HomePage = () => {
           </div>
         </div>
         <AdvertisementCarousel/>
+        <BlogCarousel/>
     </div>
   )
 }

@@ -110,4 +110,11 @@ body {
   pointer-events: none;
 }
 
+/* Blog Carousel */
+.blogSwiper .-prev.swiper-button-disabled,
+.blogSwiper .next.swiper-button-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
 

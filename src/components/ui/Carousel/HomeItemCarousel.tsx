@@ -7,6 +7,7 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import ProductCard from '../Card/ProductCard';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
+import ViewAllButton from '../Button/ViewAllButton';
 
 const HomeItemCarousel = () => {
     const [isBeginning, setIsBeginning] = useState(true);
@@ -96,9 +97,7 @@ const HomeItemCarousel = () => {
                 </div>
             </div>
             <div className='w-full text-center'>
-                <button className='text-[16px] font-bold px-[30px] py-[8px] border rounded-[38px] mt-[20px] cursor-pointer'>
-                    Xem tất cả
-                </button>
+                <ViewAllButton/>
             </div>
         </div>
     )
