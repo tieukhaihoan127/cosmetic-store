@@ -34,7 +34,7 @@ export default function HeaderClient() {
     }
 
     return(
-        <header className="relative">
+        <header className="sticky top-0 z-50">
             <div className="bg-[var(--pink-pearl)] py-[4px] px-0 flex [@media(max-width:844px)]:hidden">
                 <div className="m-auto flex text-black-500 items-center text-white text-[12px] space-x-4 gap-[20px]">
                     <div>Freeship 15k mọi đơn hàng</div>
@@ -49,7 +49,7 @@ export default function HeaderClient() {
             <div className="bg-[var(--pink-pearl)] py-[4px] px-0 [@media(min-width:844px)]:hidden">
                 <HeaderTextCarousel/>
             </div>
-            <div className="flex h-[80px] max-md:h-[65px]">
+            <div className="flex h-[80px] max-md:h-[65px] bg-white">
                 <div className="w-[90%] max-w-[90%] mx-auto flex item-center justify-between">
                     <div className="min-md:hidden flex items-center">
                         <HeaderSidebar/>
@@ -86,10 +86,12 @@ export default function HeaderClient() {
                     </div>
                 </div>
             </div>
-            <div className="w-[90%] mx-auto">
-                <SearchProduct isMobile={true}/>
+            <div className="bg-white pb-[10px] md:hidden">
+                <div className="max-w-[90%] mx-auto">
+                    <SearchProduct isMobile={true}/>
+                </div>
             </div>
-            <div className="mx-auto max-w-[90%] md:block sm:hidden max-sm:hidden">
+            <div className="mx-auto md:block sm:hidden max-sm:hidden bg-white pb-[10px]">
                 <HeaderCategoryCarousel onHoverCategory={handleHoverCategory} onLeaveCategory={handleLeaveCategory}/>
             </div>
             {hoveredCategory === "Thương hiệu" && <HeaderMenuHover />}

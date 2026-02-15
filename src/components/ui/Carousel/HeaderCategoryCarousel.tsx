@@ -18,7 +18,7 @@ const HeaderCategoryCarousel = ({ onHoverCategory, onLeaveCategory } : HeaderCat
 
 
   return (
-    <div className='flex items-center w-full header-carousel'>
+    <div className='flex items-center  header-carousel'>
       <button className={`custom-prev absolute [@media(min-width:1454px)]:left-10 [@media(min-width:1260px)]:left-8 [@media(min-width:984px)]:left-6 [@media(min-width:797px)]:left-4 left-2 z-10 bg-[var(--text_primary)] w-[20px] h-[20px] flex items-center justify-center rounded-full hover:cursor-pointer transition-opacity ${
           isBeginning ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}>
@@ -37,7 +37,7 @@ const HeaderCategoryCarousel = ({ onHoverCategory, onLeaveCategory } : HeaderCat
           setIsBeginning(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}
-        className="flex h-max overflow-x-auto overflow-y-hidden w-full justify-start"
+        className="flex h-max overflow-x-auto overflow-y-hidden w-[90%] justify-start"
         >
         <SwiperSlide className='w-auto'>
           <HeaderCategoryButton content='Thương hiệu' to='/' onHover={() => onHoverCategory('Thương hiệu')} onLeave={onLeaveCategory}/>

@@ -11,6 +11,7 @@ import Divider from '@mui/material/Divider';
 
 import { useTheme } from '@mui/material/styles';
 import BlogMenu from '../Menu/BlogMenu';
+import ViewAllButton from '../Button/ViewAllButton';
 
 const BlogCarousel = () => {
     const theme = useTheme();
@@ -94,6 +95,9 @@ const BlogCarousel = () => {
                 >
                     <ArrowForwardIosOutlinedIcon sx={{ fontSize: 18 }} />
                 </div>
+            </div>
+            <div className='w-full text-center mt-[20px]'>
+                <ViewAllButton/>
             </div>
         </div>
 

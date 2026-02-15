@@ -402,7 +402,7 @@ export default function HeaderSidebar() {
 
 
   return (
-    <div>
+    <div className='z-100'>
       <React.Fragment key={'left'}>
         <Button disableRipple onClick={toggleDrawer(true)} sx={{
           "color": "black",

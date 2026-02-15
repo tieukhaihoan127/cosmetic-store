@@ -17,7 +17,7 @@ const HomeCarousel = () => {
       loop={true}
       autoplay={{ delay: 5000, disableOnInteraction: false }}
       modules={[Pagination, Navigation, EffectCoverflow, Autoplay]}
-      className='bannerSwiper mt-2 relative'
+      className='bannerSwiper relative'
     >
       <SwiperSlide className='carousel-slide'>
         <Link to={'/'} className='block h-full'>
