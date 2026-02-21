@@ -49,7 +49,7 @@ const HeaderCategoryCarousel = ({ onHoverCategory, onLeaveCategory } : HeaderCat
           <HeaderCategoryButton content='Sản phẩm cao cấp' to='/' />
         </SwiperSlide>
         <SwiperSlide className='w-auto'>
-          <HeaderCategoryButton content='Trang điểm' to='/' />
+          <HeaderCategoryButton content='Trang điểm' to='/' onHover={() => onHoverCategory('Trang điểm')}/>
         </SwiperSlide>
         <SwiperSlide className='w-auto'>
           <HeaderCategoryButton content='Chăm sóc da' to='/' />

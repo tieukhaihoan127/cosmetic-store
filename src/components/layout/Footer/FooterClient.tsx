@@ -23,12 +23,6 @@ const FooterClient = () => {
             THEO DÕI
           </button>
         </div>
-        {/* <div className="flex items-center max-[1199px]:mt-[24px]">
-          <input type="text" placeholder="Điền email của bạn" className="bg-white focus:outline-none text-black min-w-[300px] px-[20px] py-[11.5px] max-sm:py-[10px] max-sm:min-w-[250px] rounded-l-[42px] text-[14px]" />
-          <button className="bg-white px-[20px] py-[10px] rounded-r-[42px] cursor-pointer font-semibold text-[16px] max-sm:text-[14px]  max-[459px]:pl-0">
-            THEO DÕI
-          </button>
-        </div> */}
       </div>
       <div className="grid grid-cols-5 max-md:grid-cols-2 mb-[60px] flex-wrap">
         <div>

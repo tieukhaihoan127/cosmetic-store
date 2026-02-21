@@ -16,6 +16,7 @@ import HeaderCategoryCarousel from "../../ui/Carousel/HeaderCategoryCarousel";
 import HeaderMenuHover from "../../ui/Menu/HeaderMenuHover";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { clearHoveredCategory, setHoveredCategory } from "../../../store/slices/hoveredMenuSlice";
+import CategoryHover from "../../ui/Menu/CategoryHover";
 
 export default function HeaderClient() {
 
@@ -34,7 +35,7 @@ export default function HeaderClient() {
     }
 
     return(
-        <header className="sticky top-0 z-50">
+        <header className="sticky top-0 z-9999">
             <div className="bg-[var(--pink-pearl)] py-[4px] px-0 flex [@media(max-width:844px)]:hidden">
                 <div className="m-auto flex text-black-500 items-center text-white text-[12px] space-x-4 gap-[20px]">
                     <div>Freeship 15k mọi đơn hàng</div>
@@ -95,6 +96,7 @@ export default function HeaderClient() {
                 <HeaderCategoryCarousel onHoverCategory={handleHoverCategory} onLeaveCategory={handleLeaveCategory}/>
             </div>
             {hoveredCategory === "Thương hiệu" && <HeaderMenuHover />}
+            {hoveredCategory === "Trang điểm" && <CategoryHover/>}
         </header>
     ); 
 }
