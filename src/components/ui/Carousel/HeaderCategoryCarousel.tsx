@@ -40,7 +40,7 @@ const HeaderCategoryCarousel = ({ onHoverCategory, onLeaveCategory } : HeaderCat
         className="flex h-max overflow-x-auto overflow-y-hidden w-[90%] justify-start"
         >
         <SwiperSlide className='w-auto'>
-          <HeaderCategoryButton content='Thương hiệu' to='/' onHover={() => onHoverCategory('Thương hiệu')} onLeave={onLeaveCategory}/>
+          <HeaderCategoryButton content='Thương hiệu' to='/brands' onHover={() => onHoverCategory('Thương hiệu')} onLeave={onLeaveCategory}/>
         </SwiperSlide>
         <SwiperSlide className='w-auto'>
           <HeaderCategoryButton content='Khuyến mãi hot' to='/' />
@@ -49,7 +49,7 @@ const HeaderCategoryCarousel = ({ onHoverCategory, onLeaveCategory } : HeaderCat
           <HeaderCategoryButton content='Sản phẩm cao cấp' to='/' />
         </SwiperSlide>
         <SwiperSlide className='w-auto'>
-          <HeaderCategoryButton content='Trang điểm' to='/' onHover={() => onHoverCategory('Trang điểm')}/>
+          <HeaderCategoryButton content='Trang điểm' to='/' onHover={() => onHoverCategory('Trang điểm')} onLeave={onLeaveCategory}/>
         </SwiperSlide>
         <SwiperSlide className='w-auto'>
           <HeaderCategoryButton content='Chăm sóc da' to='/' />

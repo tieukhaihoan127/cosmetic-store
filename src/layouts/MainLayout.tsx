@@ -1,16 +1,16 @@
+import { Outlet } from "react-router-dom"
 import FooterClient from "../components/layout/Footer/FooterClient"
 import HeaderClient from "../components/layout/Header/HeaderClient"
-import HomePage from "../pages/HomePage"
 
 
 const MainLayout = () => {
   return (
     <div>
         <HeaderClient/>
-        <HomePage/>
+          <Outlet/>
         <FooterClient/>
     </div>
   )
 }
 
-export default MainLayout
+export default MainLayout 

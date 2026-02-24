@@ -73,8 +73,8 @@ const CategoryHover = () => {
             <div className='flex w-1/3 pt-6 justify-center [@media(max-width:991px)]:w-full mb-10'>
                 <Link to="/" className='block overflow-hidden rounded-sm w-[300px] h-[300px]'>
                     <img
-                    src="https://image.hsv-tech.io/400x0/bbx/common/961d3e49-e6ce-4aff-b631-ea223464f471.webp"
-                    className='w-full object-cover '
+                        src="https://image.hsv-tech.io/400x0/bbx/common/961d3e49-e6ce-4aff-b631-ea223464f471.webp"
+                        className='w-full object-cover '
                     />
                 </Link>
             </div>
