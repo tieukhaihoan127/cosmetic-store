@@ -1,17 +1,9 @@
-import { Route, Routes } from "react-router-dom"
-import MainLayout from "./layouts/MainLayout"
-import HomePage from "./pages/HomePage"
-import BrandPage from "./pages/BrandPage"
+import AppRoutes from "./routes"
 
 
 const App = () => {
   return (
-    <Routes>
-      <Route element={<MainLayout/>}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/brands' element={<BrandPage />}/>
-      </Route>
-    </Routes>
+    <AppRoutes />
   )
 }
 
