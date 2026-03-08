@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const ProductCard = () => {
   return (
     <Link to={'/'}>
-        <div className='bg-white rounded-2xl'>
+        <div className='bg-white rounded-2xl shadow-sm mb-[10px]'>
         <div className='relative'>
-            <img src="https://image.hsv-tech.io/600x600/bbx/common/bb5a2a0e-fce9-41d9-b1ca-1da7d5cda3f3.webp" alt="" className='object-cover rounded-t-2xl max-w-[100%]'/>
+            <img src="https://image.hsv-tech.io/600x600/bbx/common/53dd920f-cd75-45b8-bdd5-fd311def024c.webp" alt="" className='object-cover rounded-t-2xl max-w-[100%]'/>
             <img src="https://image.hsv-tech.io/400x0/bbx/common/9d0ffd41-19f9-4c1f-9aab-31c7662f058e.webp" alt="" className='absolute bottom-0'/>
             <FavoriteBorderIcon sx={{ fontSize: 25, position: 'absolute', top: 15, right: 10, cursor: 'pointer' }}/>
             <div className='absolute top-[10px] left-[10px]'>

@@ -49,7 +49,7 @@ const FlashSaleCarousel = () => {
           }}
           breakpoints={{
             0: {
-              slidesPerView: 2
+              slidesPerView: 1.5
             },
             640: {
               slidesPerView: 2
@@ -58,10 +58,10 @@ const FlashSaleCarousel = () => {
               slidesPerView: 3
             },
             1024: {
-              slidesPerView: 3
+              slidesPerView: 4
             },
             1280: {
-              slidesPerView: 4
+              slidesPerView: 5
             },
           }}
           modules={[Navigation]}

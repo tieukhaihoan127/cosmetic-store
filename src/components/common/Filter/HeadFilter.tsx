@@ -32,7 +32,7 @@ const HeadFilter = () => {
   };
 
   return (
-    <div className="grid grid-cols-12 items-end">
+    <div className="grid grid-cols-12 items-end mt-[35px]">
       <div className="col-span-3 text-[18px] font-bold mb-[15px]">BỘ LỌC</div>
       <div className="col-span-4">
           <div className="flex flex-wrap items-center">
