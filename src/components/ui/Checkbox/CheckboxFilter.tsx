@@ -9,8 +9,8 @@ export default function CheckboxFilter() {
             icon={
                 <Box
                     sx={{
-                        width: 19,
-                        height: 19,
+                        width: 20,
+                        height: 20,
                         border: "1px solid #333",
                         borderRadius: "6px",
                     }}
@@ -19,8 +19,8 @@ export default function CheckboxFilter() {
             checkedIcon={
                 <Box
                     sx={{
-                        width: 19,
-                        height: 19,
+                        width: 20,
+                        height: 20,
                         borderRadius: "6px",
                         backgroundColor: "#333",
                         display: "flex",

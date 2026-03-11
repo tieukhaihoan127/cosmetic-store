@@ -44,7 +44,78 @@ const FilterAccordionWithSearchBar = () => {
       item: 'ESSANCE',
       quantity: 7
     },
-
+    {
+      item: 'CLUB CLIO',
+      quantity: 7
+    },
+    {
+      item: 'BBIA',
+      quantity: 7
+    },
+    {
+      item: 'CNP',
+      quantity: 7
+    },
+    {
+      item: 'MAC',
+      quantity: 7
+    },
+    {
+      item: 'SUGARPLUM',
+      quantity: 7
+    },
+    {
+      item: 'ESSANCE',
+      quantity: 7
+    },
+    {
+      item: 'CLUB CLIO',
+      quantity: 7
+    },
+    {
+      item: 'BBIA',
+      quantity: 7
+    },
+    {
+      item: 'CNP',
+      quantity: 7
+    },
+    {
+      item: 'MAC',
+      quantity: 7
+    },
+    {
+      item: 'SUGARPLUM',
+      quantity: 7
+    },
+    {
+      item: 'ESSANCE',
+      quantity: 7
+    },
+    {
+      item: 'CLUB CLIO',
+      quantity: 7
+    },
+    {
+      item: 'BBIA',
+      quantity: 7
+    },
+    {
+      item: 'CNP',
+      quantity: 7
+    },
+    {
+      item: 'MAC',
+      quantity: 7
+    },
+    {
+      item: 'SUGARPLUM',
+      quantity: 7
+    },
+    {
+      item: 'ESSANCE',
+      quantity: 7
+    },
   ];
 
   const [showMore, setShowMore] = useState(false);
@@ -110,12 +181,12 @@ const FilterAccordionWithSearchBar = () => {
         </AccordionSummary>
         <AccordionDetails
           sx={{
-            p: "0 16px 0 0",
+            p: "0 16px 12px 0",
           }}
         >
           <div className='flex flex-col'>
             <SearchFilter />
-            <div className={`${showMore ? "max-h-[300px] overflow-y-auto custom-scrollbar pl-[1.6px]" : ""} flex flex-col `}>
+            <div className={`${showMore ? "max-h-[300px] overflow-y-auto custom-scrollbar pl-[2px]" : ""} flex flex-col `}>
               {visibleItems.map((item) => (
                 <FormControlLabel key={item.item} control={<CheckboxFilter />} label={<Typography fontSize="14px">{item.item} ({item.quantity})</Typography>} />
               ))}

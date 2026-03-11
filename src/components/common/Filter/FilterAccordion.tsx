@@ -60,7 +60,7 @@ const FilterAccordion = () => {
         </AccordionSummary>
         <AccordionDetails
           sx={{
-            p: "0 16px 0 0",
+            p: "0 16px 12px 0",
           }}
         >
           <div className='flex flex-col'>

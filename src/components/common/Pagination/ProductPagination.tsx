@@ -8,7 +8,7 @@ const ProductPagination = () => {
   const count = 20;
 
   return (
-    <Stack alignItems="center">
+    <Stack alignItems="center" className="mt-[15px]">
       <Pagination
         page={page}
         count={count}
