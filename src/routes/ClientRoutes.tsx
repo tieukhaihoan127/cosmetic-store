@@ -3,6 +3,7 @@ import BrandPage from '../pages/BrandPage'
 import HomePage from '../pages/HomePage'
 import MainLayout from '../layouts/MainLayout'
 import ProductPage from '../pages/ProductPage'
+import CollectionPage from '../pages/CollectionPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -19,6 +20,10 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: "/categories/:category",
                 element: <ProductPage />
+            },
+            {
+                path: "/collections/:collection",
+                element: <CollectionPage />
             }
         ]
     }

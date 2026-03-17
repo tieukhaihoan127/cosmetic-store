@@ -40,9 +40,7 @@ export default function HeaderClient() {
                 <div className="m-auto flex text-black-500 items-center text-white text-[12px] space-x-4 gap-[20px]">
                     <div>Freeship 15k mọi đơn hàng</div>
                     <div>.</div>
-                    <div>Quà Tặng Cho Đơn Từ 499K</div>
-                    <div>.</div>
-                    <div>Giao Hàng Nhanh 24H</div>
+                    <div>Quà tặng cho đơn từ 499K</div>
                     <div>.</div>
                     <div>Mua online nhận tại cửa hàng gần nhất</div>
                 </div>
