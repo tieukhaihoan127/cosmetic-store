@@ -4,6 +4,7 @@ import HomePage from '../pages/HomePage'
 import MainLayout from '../layouts/MainLayout'
 import ProductPage from '../pages/ProductPage'
 import CollectionPage from '../pages/CollectionPage'
+import ProductDetailPage from '../pages/ProductDetailPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -24,7 +25,11 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: "/collections/:collection",
                 element: <CollectionPage />
-            }
+            },
+            {
+                path: "/products/:product",
+                element: <ProductDetailPage />
+            },
         ]
     }
 ];

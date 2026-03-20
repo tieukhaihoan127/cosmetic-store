@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ProductCard = () => {
   return (
-    <Link to={'/'}>
+    <Link to={'/products/son-nuoc-bong-thuan-chay-amuse-dew-tint-4g#amuse'}>
         <div className='bg-white rounded-2xl shadow-sm mb-[10px]'>
         <div className='relative'>
             <img src="https://image.hsv-tech.io/600x600/bbx/common/53dd920f-cd75-45b8-bdd5-fd311def024c.webp" alt="" className='object-cover rounded-t-2xl max-w-[100%]'/>
