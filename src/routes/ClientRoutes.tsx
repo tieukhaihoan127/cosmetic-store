@@ -5,6 +5,7 @@ import MainLayout from '../layouts/MainLayout'
 import ProductPage from '../pages/ProductPage'
 import CollectionPage from '../pages/CollectionPage'
 import ProductDetailPage from '../pages/ProductDetailPage'
+import ReviewPage from '../pages/ReviewPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -29,6 +30,10 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: "/products/:product",
                 element: <ProductDetailPage />
+            },
+            {
+                path: "/products/:product/reviews",
+                element: <ReviewPage />
             },
         ]
     }

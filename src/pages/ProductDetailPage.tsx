@@ -41,7 +41,6 @@ import Toolbar from '@mui/material/Toolbar';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import ClearIcon from '@mui/icons-material/Clear';
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { closeDrawer, openDrawer } from "../store/slices/clickAddItemMobile";
 
@@ -1404,7 +1403,7 @@ const ProductDetailPage = () => {
                             </div>
                         </div>
                     </div>
-                    <Link to='/' >
+                    <Link to='/products/son-nuoc-bong-thuan-chay-amuse-dew-tint-4g/reviews' >
                         <div className="underline text-[14px] leading-[1.5715] mt-[40px]">
                             Tải thêm bình luận
                         </div>
