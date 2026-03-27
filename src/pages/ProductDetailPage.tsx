@@ -14,7 +14,8 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import FlashSaleBanner from "../components/common/Banner/FlashSaleBanner";
 import FundinBanner from "../components/common/Banner/FundinBanner";
-import SelectMethodBanner from "../components/common/Banner/SelectMethodBanner";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import StorefrontIcon from '@mui/icons-material/Storefront'
 import ProductDetailAttribute from "../components/common/Banner/ProductDetailAttribute";
 import Rating from "@mui/material/Rating";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -28,6 +29,23 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from "@mui/material/IconButton";
+import FormControl from "@mui/material/FormControl";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import ProductDetailRadio from "../components/ui/Radio/ProductDetailRadio";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ToggleButton from "@mui/material/ToggleButton";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Drawer from "@mui/material/Drawer";
+import Box from "@mui/material/Box";
+import ClearIcon from '@mui/icons-material/Clear';
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { closeDrawer, openDrawer } from "../store/slices/clickAddItemMobile";
+
+
 
 const ProductDetailPage = () => {
 
@@ -43,7 +61,23 @@ const ProductDetailPage = () => {
     const [question, setQuestion] = useState('');
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
-    const [openStoreDialog, setOpenStoreDialog] = useState(true);
+    const [openStoreDialog, setOpenStoreDialog] = useState(false);
+    const [openTimeDialog, setOpenTimeDialog] = useState(false);
+    const [openShowroomDialog, setOpenShowroomDialog] = useState(false);
+    const [openRatingDialog, setOpenRatingDialog] = useState(false);
+    const [helpful, setHelpful] = useState('co');
+
+    const isMD = useMediaQuery('(max-width: 768px)');
+
+    const isXS = useMediaQuery('(max-width: 576px)');
+
+    const isFlexing = useMediaQuery('(max-width: 408px)');
+
+    const dispatch = useAppDispatch();
+
+    const addItemButton = useAppSelector((state) => state.mobileAddProductButton);
+
+    const method = useAppSelector((state) => state.mobileAddProductButton.method);
 
     const handleSlideChange = (swiper: SwiperType) => {
         setIsBeginning(swiper.isBeginning);
@@ -117,8 +151,8 @@ const ProductDetailPage = () => {
 
     return (
         <div className="w-[90%] mx-auto">
-            <div className="grid grid-cols-12 mt-[20px]">
-                <div className="col-span-1 flex flex-col items-center px-[5px] w-[100px] self-start sticky top-[10px]">
+            <div className="grid mt-[20px] [grid-template-columns:100px_1fr_50%] [@media(max-width:992px)]:[grid-template-columns:100px_1fr] [@media(max-width:992px)]:grid-rows-[auto_auto]">
+                <div className="flex flex-col items-center px-[5px] w-[100px] self-start sticky top-[150px] [@media(max-width:992px)]:relative [@media(max-width:992px)]:top-0 [@media(max-width:576px)]:hidden">
                     <div onClick={handlePrev} className="thumb-prev z-10 cursor-pointer mb-[12px]">
                         <KeyboardArrowUpIcon sx={{ fontSize: 28 }} />
                     </div>
@@ -163,11 +197,15 @@ const ProductDetailPage = () => {
                         <KeyboardArrowDownIcon sx={{ fontSize: 28 }} />
                     </div>
                 </div>
-                <div className="col-span-4">
+                <div className="min-w-0 self-start sticky top-[150px] mr-[10px] [@media(max-width:1199px)]:ml-[2px] [@media(max-width:1199px)]:mr-[40px] [@media(max-width:992px)]:relative [@media(max-width:992px)]:top-0 [@media(max-width:992px)]:mr-0 [@media(max-width:576px)]:col-span-full">
                     <Swiper
                         onSwiper={setMainSwiper}
                         onSlideChange={(swiper) => thumbsSwiper?.slideTo(swiper.activeIndex)}
                         thumbs={{ swiper: thumbsSwiper }}
+                        navigation={isXS ? {
+                            nextEl: '.product-next',
+                            prevEl: '.product-prev',
+                        } : false}
                         modules={[Thumbs, Navigation]}
                     >
                         {images.map((src, i) => (
@@ -175,10 +213,23 @@ const ProductDetailPage = () => {
                                 <ImageCard imageUrl={src} />
                             </SwiperSlide>
                         ))}
+                        {isXS &&
+                            <div className="product-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 
+                                w-[35px] h-[35px] bg-white border-1 border-[#efefef] rounded-full 
+                                flex items-center justify-center cursor-pointer shadow-[0_0_4px_rgba(0,0,0,0.25)]">
+                                <ArrowBackIosNewOutlinedIcon sx={{ color: 'black', fontSize: 16 }} />
+                            </div>
+                        }
+                        {isXS &&
+                            <div className="product-next absolute right-2 top-1/2 -translate-y-1/2 z-10 
+                                w-[35px] h-[35px] bg-white border-1 border-[#efefef] rounded-full 
+                                flex items-center justify-center cursor-pointer shadow-[0_0_4px_rgba(0,0,0,0.25)]">
+                                <ArrowForwardIosOutlinedIcon sx={{ color: 'black', fontSize: 16 }} />
+                            </div>
+                        }
                     </Swiper>
                 </div>
-                <div className="col-span-1"></div>
-                <div className="col-span-6">
+                <div className="min-w-0 [@media(max-width:992px)]:col-span-full [@media(max-width:992px)]:mt-[15px]">
                     <div className="flex items-center text-[#797979] gap-2 leading-relaxed">
                         <Link to="/" className="text-[12px]">
                             Trang chủ
@@ -317,10 +368,52 @@ const ProductDetailPage = () => {
                     <div className="text-[#c73130] text-[14px]">
                         Còn 1 sản phẩm
                     </div>
-                    <SelectMethodBanner />
+                    <div className="mt-[20px] rounded-[10px] px-[18px] py-[15px] border-2 border-transparent max-md:hidden" style={{
+                        background: "linear-gradient(white, white) padding-box, linear-gradient(90deg, rgb(255, 212, 0) 0%, rgb(199, 49, 48) 50.52%, rgb(102, 54, 149) 99.61%) border-box",
+                    }}>
+                        <div className="mb-[5px] text-[18px] font-bold">Hình thức mua hàng</div>
+                        <FormControl>
+                            <RadioGroup
+                                value={value}
+                                onChange={handleChange}
+                            >
+                                <FormControlLabel value="delivery" control={<ProductDetailRadio />} label={<span className="text-[15px] font-bold">Giao hàng</span>} />
+                                <div className="flex items-center flex-wrap">
+                                    <FormControlLabel value="pick-up" control={<ProductDetailRadio />} label={<span className="text-[15px]"><span className="font-bold">Click & Collect</span> Mua và lấy hàng tại cửa hàng</span>} />
+                                    {/* <div className="flex items-center">
+                                        <div onClick={() => setOpenStoreDialog(true)} className="text-[15px] font-bold cursor-pointer">Chọn cửa hàng</div>
+                                        <KeyboardArrowDownIcon />
+                                    </div> */}
+                                </div>
+                                <div onClick={() => setOpenStoreDialog(true)} className="text-[14px] flex items-center ml-[28px] cursor-pointer flex-wrap">
+                                    <div className="text-[#5aa000] text-[#da0000] font-semibold">Hết hàng</div>
+                                    <div className="mx-2">tại</div>
+                                    <div className="flex items-center">
+                                        <div className="font-bold">BEAUTY BOX VÕ VĂN NGÂN</div>
+                                        <KeyboardArrowDownIcon />
+                                    </div>
+                                    <div className="text-[#0992d0] ml-1 [@media(max-width:1199px)]:mt-1">Chọn cửa hàng khác</div>
+                                </div>
+                            </RadioGroup>
+                        </FormControl>
+                        <Divider sx={{ marginTop: '15px', marginBottom: '10px' }} />
+                        <div className="flex items-center justify-between cursor-pointer hover:text-[#b0100f] transition-all-ease duration-400 flex-wrap">
+                            <div className="flex items-end">
+                                <StorefrontIcon sx={{ marginRight: '12px', fontSize: '22px', color: '#b0100f' }} />
+                                <div className="text-[14px]">
+                                    <span className="font-bold mr-[10px]">1/25</span> chi nhánh còn mặt hàng này
+                                </div>
+                            </div>
+                            <div className="flex items-center">
+                                <div className="text-[14px] font-bold leading-[20px]">Xem tất cả các cửa hàng</div>
+                                <KeyboardArrowRightIcon sx={{ fontSize: '22px' }} />
+                            </div>
+                        </div>
+                    </div>
                     <Dialog
                         open={openStoreDialog}
                         onClose={() => setOpenStoreDialog(false)}
+                        fullScreen={isXS}
                         sx={{
                             maxHeight: '700px',
                             height: '700px',
@@ -340,14 +433,14 @@ const ProductDetailPage = () => {
                             <div className="flex items-center justify-between">
                                 <div className="text-[22px] font-semibold">Danh sách cửa hàng</div>
                                 <IconButton disableRipple onClick={() => setOpenStoreDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
-                                    <CloseIcon sx={{ fontSize: '30px',  }}/>
+                                    <CloseIcon sx={{ fontSize: '30px', }} />
                                 </IconButton>
                             </div>
                         </DialogTitle>
                         <DialogContent sx={{ paddingX: '32px', paddingY: '28px' }}>
                             <div className="flex flex-col gap-[20px]">
                                 <div className="flex my-[24px]">
-                                    <img src="https://image.hsv-tech.io/65x65/bbx/common/53dd920f-cd75-45b8-bdd5-fd311def024c.webp" alt="" className="min-w-[65px] w-[65px] h-[65px]"/>
+                                    <img src="https://image.hsv-tech.io/65x65/bbx/common/53dd920f-cd75-45b8-bdd5-fd311def024c.webp" alt="" className="min-w-[65px] w-[65px] h-[65px]" />
                                     <div className="text-[14px] ml-[15px]">
                                         <div className="font-semibold leading-[20px] mb-[5px]">AMUSE</div>
                                         <div className="leading-[23px] text-[16px] mb-[5px]">Son Thạch Bóng Thuần Chay Amuse Jel-Fit Tint 3.8g</div>
@@ -380,7 +473,7 @@ const ProductDetailPage = () => {
                                                     '& .MuiAutocomplete-option.Mui-focused': {
                                                         backgroundColor: '#EAC7C8 !important',
                                                         color: 'white',
-                                                    },    
+                                                    },
                                                 }
                                             }
                                         }}
@@ -505,134 +598,68 @@ const ProductDetailPage = () => {
                                         <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
                                         <div className="underline">18002004</div>
                                         <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
-                                            <div>Chi tiết</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div>Hồ Chí Minh</div>
-                                            <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
-                                        </div>
-                                        <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
-                                        <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
-                                        <div className="underline">18002004</div>
-                                        <div className="flex items-center mt-[10px] underline gap-[10px]">
-                                            <div>Xem showroom</div>
-                                            <div>Giờ mở cửa</div>
+                                            <div onClick={() => setOpenShowroomDialog(true)}>Xem showroom</div>
+                                            <Dialog
+                                                open={openShowroomDialog}
+                                                onClose={() => setOpenShowroomDialog(false)}
+                                                maxWidth="xs"
+                                                fullWidth
+                                                slotProps={{
+                                                    paper: {
+                                                        sx: { borderRadius: '10px' }
+                                                    }
+                                                }}
+                                            >
+                                                <DialogContent sx={{ p: 0 }}>
+                                                    <img
+                                                        src="https://image.hsv-tech.io/890x0/bbx/common/6d01e6c0-e740-4c49-8c9f-67b3e9b9d752.webp"
+                                                        alt="showroom"
+                                                        className="w-full object-contain"
+                                                    />
+                                                </DialogContent>
+                                            </Dialog>
+                                            <div onClick={() => setOpenTimeDialog(true)}>Giờ mở cửa</div>
+                                            <Dialog
+                                                open={openTimeDialog}
+                                                onClose={() => setOpenTimeDialog(false)}
+                                                sx={{
+                                                    maxHeight: '700px',
+                                                    height: '700px',
+                                                    borderRadius: '20px'
+                                                }}
+                                                maxWidth='xs'
+                                                fullWidth
+                                                slotProps={{
+                                                    paper: {
+                                                        sx: {
+                                                            borderRadius: '10px',
+                                                        }
+                                                    }
+                                                }}
+                                            >
+                                                <DialogTitle >
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="text-[24px] font-semibold">Giờ mở cửa</div>
+                                                        <IconButton disableRipple onClick={() => setOpenTimeDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                                            <CloseIcon sx={{ fontSize: '30px', }} />
+                                                        </IconButton>
+                                                    </div>
+                                                </DialogTitle>
+                                                <DialogContent>
+                                                    <div className="flex items-center justify-between text-[14px] leading-[1.5715]">
+                                                        <div className="font-bold">Thứ 2 tới thứ 6</div>
+                                                        <div>09:00 - 21:00</div>
+                                                    </div>
+                                                    <div className="flex items-center justify-between text-[14px] leading-[1.5715]">
+                                                        <div className="font-bold">Thứ 7</div>
+                                                        <div>09:00 - 21:00</div>
+                                                    </div>
+                                                    <div className="flex items-center justify-between text-[14px] leading-[1.5715]">
+                                                        <div className="font-bold">Chủ nhật</div>
+                                                        <div>09:00 - 21:00</div>
+                                                    </div>
+                                                </DialogContent>
+                                            </Dialog>
                                             <div>Chi tiết</div>
                                         </div>
                                     </div>
@@ -640,13 +667,13 @@ const ProductDetailPage = () => {
                             </div>
                         </DialogContent>
                     </Dialog>
-                    <div className="flex items-center gap-[10px] mt-[30px]">
+                    <div className="flex items-center gap-[10px] mt-[30px] flex-wrap max-md:hidden">
                         <div className="flex items-center rounded-[38px] border-2 gap-6 px-[10px] py-[12px] border-[#efefef]">
                             <RemoveOutlinedIcon />
                             <div className="text-[16px] font-bold">1</div>
                             <AddOutlinedIcon />
                         </div>
-                        <div className={`flex flex-1 items-center justify-center rounded-[38px] py-[12px] transition-all-ease duration-300 ${value !== "pick-up" ? 'bg-black hover:bg-[#333333] cursor-pointer' : 'bg-[#F7F7F7] border-2 border-[#D9D9D9] cursor-not-allowed'} `}>
+                        <div className={`flex flex-1 min-w-[200px] items-center justify-center rounded-[38px] py-[12px] transition-all-ease duration-300 ${value !== "pick-up" ? 'bg-black hover:bg-[#333333] cursor-pointer' : 'bg-[#F7F7F7] border-2 border-[#D9D9D9] cursor-not-allowed'} `}>
                             <ShoppingBasketOutlinedIcon sx={{ color: 'white' }} />
                             <div className={`ml-[8px] ${value !== "pick-up" ? 'text-white' : 'text-[#D9D9D9] hover:text-white transition-all-ease duration-300'}`}>Thêm vào giỏ hàng</div>
                         </div>
@@ -657,15 +684,392 @@ const ProductDetailPage = () => {
                             <FavoriteBorderOutlinedIcon sx={{ fontSize: '22px' }} />
                         </div>
                     </div>
+                    <AppBar
+                        position="fixed"
+                        sx={{
+                            top: 'auto',
+                            bottom: 0,
+                            background: 'white',
+                            display: isMD ? 'block' : 'none'
+                        }}
+                    >
+                        <Toolbar
+                            sx={{
+                                gap: '10px',
+                                paddingX: '10px',
+                                paddingY: '15px',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <div className="w-fit h-[50px] flex items-center justify-center rounded-[38px] px-[14px] border-2 border-black">
+                                <FavoriteBorderOutlinedIcon sx={{ fontSize: '22px', color: 'black' }} />
+                            </div>
+                            <div onClick={() => dispatch(openDrawer('add-item'))} className={`flex ${isFlexing ? 'flex-none' : 'flex-1'} items-center justify-center rounded-[38px] py-[12px] px-[23px] transition-all-ease duration-300 ${value !== "pick-up" ? 'bg-black hover:bg-[#333333] cursor-pointer' : 'bg-[#F7F7F7] border-2 border-[#D9D9D9] cursor-not-allowed'} `}>
+                                {isXS === false && <ShoppingBasketOutlinedIcon sx={{ color: 'white' }} />}
+                                <div className={`${isXS ? '' : 'ml-[8px]'} text-[12px] ${value !== "pick-up" ? 'text-white' : 'text-[#D9D9D9] hover:text-white transition-all-ease duration-300'}`}>Thêm vào giỏ hàng</div>
+                            </div>
+                            <div onClick={() => dispatch(openDrawer('buy-item'))} className={`rounded-[38px] flex-1 text-[12px] text-center ${isXS ? 'py-[12px]' : 'py-[15px]'} px-[23px] ${value === 'pick-up' ? 'bg-[#F7F7F7] text-[#D9D9D9] hover:text-white transition-all-ease duration-300 cursor-not-allowed' : 'text-white cursor-pointer'}`} style={value !== 'pick-up' ? { backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" } : undefined}>
+                                Mua Ngay
+                            </div>
+                        </Toolbar>
+                    </AppBar>
+                    <Drawer
+                        anchor="bottom"
+                        open={addItemButton.isOpen}
+                        onClose={() => dispatch(closeDrawer())}
+                        sx={{
+                            "& .MuiDrawer-paper": {
+                                maxHeight: "90vh",
+                                borderTopLeftRadius: "10px",
+                                borderTopRightRadius: "10px",
+                            }
+                        }}
+                    >
+                        <div className="flex items-center justify-between px-[24px] py-[8px]">
+                            <div></div>
+                            <div className="font-bold text-[18px]">Chọn phương thức mua hàng</div>
+                            <IconButton disableRipple onClick={() => dispatch(closeDrawer())} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                <CloseIcon sx={{ fontSize: '30px', }} />
+                            </IconButton>
+                        </div>
+                        <Divider />
+                        <Box
+                            sx={{
+                                width: 'auto',
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                padding: '15px'
+                            }}
+                        >
+                            <div className="rounded-[10px] px-[18px] py-[15px] border-2 border-transparent" style={{
+                                background: "linear-gradient(white, white) padding-box, linear-gradient(90deg, rgb(255, 212, 0) 0%, rgb(199, 49, 48) 50.52%, rgb(102, 54, 149) 99.61%) border-box",
+                            }}>
+                                <div className="mb-[5px] text-[18px] font-bold">Hình thức mua hàng</div>
+                                <FormControl>
+                                    <RadioGroup
+                                        value={value}
+                                        onChange={handleChange}
+                                    >
+                                        <FormControlLabel value="delivery" control={<ProductDetailRadio />} label={<span className="text-[15px] font-bold">Giao hàng</span>} />
+                                        <div className="flex items-center flex-wrap">
+                                            <FormControlLabel value="pick-up" control={<ProductDetailRadio />} label={<span className="text-[15px]"><span className="font-bold">Click & Collect</span> Mua và lấy hàng tại cửa hàng</span>} />
+                                            {/* <div className="flex items-center">
+                                        <div onClick={() => setOpenStoreDialog(true)} className="text-[15px] font-bold cursor-pointer">Chọn cửa hàng</div>
+                                        <KeyboardArrowDownIcon />
+                                    </div> */}
+                                        </div>
+                                        <div onClick={() => setOpenStoreDialog(true)} className="text-[14px] flex items-center ml-[28px] cursor-pointer flex-wrap">
+                                            <div className="text-[#5aa000] text-[#da0000] font-semibold">Hết hàng</div>
+                                            <div className="mx-2">tại</div>
+                                            <div className="flex items-center">
+                                                <div className="font-bold">BEAUTY BOX VÕ VĂN NGÂN</div>
+                                                <KeyboardArrowDownIcon />
+                                            </div>
+                                            <div className="text-[#0992d0] ml-1 [@media(max-width:1199px)]:mt-1">Chọn cửa hàng khác</div>
+                                        </div>
+                                    </RadioGroup>
+                                </FormControl>
+                                <Divider sx={{ marginTop: '15px', marginBottom: '10px' }} />
+                                <div className="flex items-center justify-between cursor-pointer hover:text-[#b0100f] transition-all-ease duration-400 flex-wrap">
+                                    <div className="flex items-end">
+                                        <StorefrontIcon sx={{ marginRight: '12px', fontSize: '22px', color: '#b0100f' }} />
+                                        <div className="text-[14px]">
+                                            <span className="font-bold mr-[10px]">1/25</span> chi nhánh còn mặt hàng này
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="text-[14px] font-bold leading-[20px]">Xem tất cả các cửa hàng</div>
+                                        <KeyboardArrowRightIcon sx={{ fontSize: '22px' }} />
+                                    </div>
+                                </div>
+                            </div>
+                            <Dialog
+                                open={openStoreDialog}
+                                onClose={() => setOpenStoreDialog(false)}
+                                fullScreen={isXS}
+                                sx={{
+                                    maxHeight: '700px',
+                                    height: '700px',
+                                    borderRadius: '20px'
+                                }}
+                                maxWidth='sm'
+                                fullWidth
+                                slotProps={{
+                                    paper: {
+                                        sx: {
+                                            borderRadius: '10px',
+                                        }
+                                    }
+                                }}
+                            >
+                                <DialogTitle sx={{ paddingX: '32px', paddingY: '28px' }}>
+                                    <div className="flex items-center justify-between">
+                                        <div className="text-[22px] font-semibold">Danh sách cửa hàng</div>
+                                        <IconButton disableRipple onClick={() => setOpenStoreDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                            <CloseIcon sx={{ fontSize: '30px', }} />
+                                        </IconButton>
+                                    </div>
+                                </DialogTitle>
+                                <DialogContent sx={{ paddingX: '32px', paddingY: '28px' }}>
+                                    <div className="flex flex-col gap-[20px]">
+                                        <div className="flex my-[24px]">
+                                            <img src="https://image.hsv-tech.io/65x65/bbx/common/53dd920f-cd75-45b8-bdd5-fd311def024c.webp" alt="" className="min-w-[65px] w-[65px] h-[65px]" />
+                                            <div className="text-[14px] ml-[15px]">
+                                                <div className="font-semibold leading-[20px] mb-[5px]">AMUSE</div>
+                                                <div className="leading-[23px] text-[16px] mb-[5px]">Son Thạch Bóng Thuần Chay Amuse Jel-Fit Tint 3.8g</div>
+                                                <div>SKU: 11112241</div>
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <Autocomplete
+                                                options={['Hà Nội', 'Hồ Chí Minh', 'Bình Dương', 'Hải Phòng']}
+                                                slotProps={{
+                                                    popper: {
+                                                        placement: 'bottom',
+                                                        modifiers: [
+                                                            {
+                                                                name: 'flip',
+                                                                enabled: false,
+                                                            }
+                                                        ]
+                                                    },
+                                                    paper: {
+                                                        sx: {
+                                                            '& .MuiAutocomplete-option': {
+                                                                fontSize: '14px',
+                                                                transition: 'all 200ms ease-in-out',
+                                                            },
+                                                            '& .MuiAutocomplete-option[aria-selected="true"]': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                            '& .MuiAutocomplete-option.Mui-focused': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                        }
+                                                    }
+                                                }}
+                                                sx={{ paddingRight: '10px' }}
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        placeholder="Tỉnh/Thành phố"
+                                                        sx={{
+                                                            '& .MuiOutlinedInput-root': {
+                                                                padding: '11px',
+                                                                borderRadius: '5px',
+                                                                cursor: 'pointer',
+                                                                '& fieldset': {
+                                                                    border: '1px solid #d9d9d9',
+                                                                    transition: 'all 200ms ease-in-out',
+                                                                },
+                                                                '&.Mui-focused fieldset': {
+                                                                    border: '1px solid black !important',
+                                                                },
+                                                            },
+                                                            '& .MuiAutocomplete-input': {
+                                                                padding: '0 !important',
+                                                                cursor: 'pointer',
+                                                            },
+                                                            '& input::placeholder': {
+                                                                fontSize: '14px',
+                                                            },
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                            <Autocomplete
+                                                options={[
+                                                    "Quận 1",
+                                                    "Quận 2",
+                                                    "Quận 3",
+                                                    "Quận 4",
+                                                    "Quận 5",
+                                                    "Quận 6",
+                                                    "Quận 7",
+                                                    "Quận 8",
+                                                    "Quận 9",
+                                                    "Quận 10",
+                                                    "Quận 11",
+                                                    "Quận 12",
+                                                    "Quận Bình Thạnh",
+                                                    "Quận Bình Tân",
+                                                    "Quận Gò Vấp",
+                                                    "Quận Phú Nhuận",
+                                                    "Quận Tân Bình",
+                                                    "Quận Tân Phú",
+                                                    "Quận Thủ Đức",
+                                                    "Huyện Bình Chánh",
+                                                    "Huyện Cần Giờ",
+                                                    "Huyện Củ Chi",
+                                                    "Huyện Hóc Môn",
+                                                    "Huyện Nhà Bè",
+                                                ]}
+                                                slotProps={{
+                                                    popper: {
+                                                        placement: 'bottom',
+                                                        modifiers: [
+                                                            {
+                                                                name: 'flip',
+                                                                enabled: false,
+                                                            }
+                                                        ]
+                                                    },
+                                                    paper: {
+                                                        sx: {
+                                                            '& .MuiAutocomplete-option': {
+                                                                fontSize: '14px',
+                                                            },
+                                                            '& .MuiAutocomplete-option[aria-selected="true"]': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                            '& .MuiAutocomplete-option.Mui-focused': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                        }
+                                                    }
+                                                }}
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        placeholder="Quận/huyện"
+                                                        sx={{
+                                                            '& .MuiOutlinedInput-root': {
+                                                                padding: '11px',
+                                                                borderRadius: '5px',
+                                                                cursor: 'pointer',
+                                                                '& fieldset': {
+                                                                    border: '1px solid #d9d9d9',
+                                                                    transition: 'all 200ms ease-in-out',
+                                                                },
+                                                                '&.Mui-focused fieldset': {
+                                                                    border: '1px solid black !important',
+                                                                },
+                                                            },
+                                                            '& .MuiAutocomplete-input': {
+                                                                padding: '0 !important',
+                                                                cursor: 'pointer',
+                                                            },
+                                                            '& input::placeholder': {
+                                                                fontSize: '14px',
+                                                            },
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-[10px]">
+                                            <div className="p-[20px] text-[14px] leading-[1.5715] border-1 border-[#EFEFEF] rounded-[3px] cursor-pointer">
+                                                <div className="flex items-center justify-between mb-1">
+                                                    <div>Hồ Chí Minh</div>
+                                                    <div className="rounded-[5px] bg-[#f6ffed] text-[#389e0d] px-[12px] py-[3px] text-[12px]">Còn hàng</div>
+                                                </div>
+                                                <div className="font-bold mb-1">BEAUTY BOX 199 KHÁNH HỘI</div>
+                                                <div className="mb-1">Số 199 Khánh Hội, Phường Vĩnh Hội, Thành Phố Hồ Chí Minh, Phường 9, Quận 4</div>
+                                                <div className="underline">18002004</div>
+                                                <div className="flex items-center mt-[10px] underline gap-[10px]">
+                                                    <div onClick={() => setOpenShowroomDialog(true)}>Xem showroom</div>
+                                                    <Dialog
+                                                        open={openShowroomDialog}
+                                                        onClose={() => setOpenShowroomDialog(false)}
+                                                        maxWidth="xs"
+                                                        fullWidth
+                                                        slotProps={{
+                                                            paper: {
+                                                                sx: { borderRadius: '10px' }
+                                                            }
+                                                        }}
+                                                    >
+                                                        <DialogContent sx={{ p: 0 }}>
+                                                            <img
+                                                                src="https://image.hsv-tech.io/890x0/bbx/common/6d01e6c0-e740-4c49-8c9f-67b3e9b9d752.webp"
+                                                                alt="showroom"
+                                                                className="w-full object-contain"
+                                                            />
+                                                        </DialogContent>
+                                                    </Dialog>
+                                                    <div onClick={() => setOpenTimeDialog(true)}>Giờ mở cửa</div>
+                                                    <Dialog
+                                                        open={openTimeDialog}
+                                                        onClose={() => setOpenTimeDialog(false)}
+                                                        sx={{
+                                                            maxHeight: '700px',
+                                                            height: '700px',
+                                                            borderRadius: '20px'
+                                                        }}
+                                                        maxWidth='xs'
+                                                        fullWidth
+                                                        slotProps={{
+                                                            paper: {
+                                                                sx: {
+                                                                    borderRadius: '10px',
+                                                                }
+                                                            }
+                                                        }}
+                                                    >
+                                                        <DialogTitle >
+                                                            <div className="flex items-center justify-between">
+                                                                <div className="text-[24px] font-semibold">Giờ mở cửa</div>
+                                                                <IconButton disableRipple onClick={() => setOpenTimeDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                                                    <CloseIcon sx={{ fontSize: '30px', }} />
+                                                                </IconButton>
+                                                            </div>
+                                                        </DialogTitle>
+                                                        <DialogContent>
+                                                            <div className="flex items-center justify-between text-[14px] leading-[1.5715]">
+                                                                <div className="font-bold">Thứ 2 tới thứ 6</div>
+                                                                <div>09:00 - 21:00</div>
+                                                            </div>
+                                                            <div className="flex items-center justify-between text-[14px] leading-[1.5715]">
+                                                                <div className="font-bold">Thứ 7</div>
+                                                                <div>09:00 - 21:00</div>
+                                                            </div>
+                                                            <div className="flex items-center justify-between text-[14px] leading-[1.5715]">
+                                                                <div className="font-bold">Chủ nhật</div>
+                                                                <div>09:00 - 21:00</div>
+                                                            </div>
+                                                        </DialogContent>
+                                                    </Dialog>
+                                                    <div>Chi tiết</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </DialogContent>
+                            </Dialog>
+                            <div className="flex items-center justify-between rounded-[38px] border-2 gap-6 px-[10px] py-[12px] my-[10px] border-[#efefef]">
+                                <RemoveOutlinedIcon />
+                                <div className="text-[16px] font-bold">1</div>
+                                <AddOutlinedIcon />
+                            </div>
+                            {method === 'add-item' && 
+                                <div className={`flex flex-1 items-center justify-center rounded-[38px] py-[12px] px-[23px] transition-all-ease duration-300 ${value !== "pick-up" ? 'bg-black hover:bg-[#333333] cursor-pointer' : 'bg-[#F7F7F7] border-2 border-[#D9D9D9] cursor-not-allowed'} `}>
+                                    <ShoppingBasketOutlinedIcon sx={{ color: 'white' }} />
+                                    <div className={`ml-[8px] text-[12px] ${value !== "pick-up" ? 'text-white' : 'text-[#D9D9D9] hover:text-white transition-all-ease duration-300'}`}>Thêm vào giỏ hàng</div>
+                                </div>
+                            }
+                            {method === 'buy-item' && 
+                                <div className={`rounded-[38px] flex-1 text-[12px] text-center py-[15px] px-[23px] ${value === 'pick-up' ? 'bg-[#F7F7F7] text-[#D9D9D9] hover:text-white transition-all-ease duration-300 cursor-not-allowed' : 'text-white cursor-pointer'}`} style={value !== 'pick-up' ? { backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" } : undefined}>
+                                    Mua Ngay
+                                </div>
+                            }
+                        </Box>
+                    </Drawer>
                     <ProductDetailAttribute />
                 </div>
             </div>
             <Divider sx={{ marginY: '15px' }} />
             <div className="grid grid-cols-12 mb-[40px]">
-                <div className="col-span-4 text-[24px] font-bold leading-[35px]">
+                <div className="col-span-4 text-[24px] font-bold leading-[35px] [@media(max-width:1199px)]:col-span-12">
                     Giới thiệu
                 </div>
-                <div className="col-span-8 p-[10px]">
+                <div className="col-span-8 p-[10px] [@media(max-width:1199px)]:col-span-12">
                     <div className={` ${expanded ? 'max-h-[100000000px]' : 'max-h-[110px]'} overflow-hidden relative`}>
                         <div className="p-[10px] text-[14px] italic">
                             <p className="mt-[16px] pb-[16px]">
@@ -716,11 +1120,139 @@ const ProductDetailPage = () => {
             </div>
             <Divider />
             <div className="grid grid-cols-12 mt-[50px]">
-                <div className="col-span-4 w-[90%]">
+                <div className="col-span-4 w-[90%] pr-[20px] [@media(max-width:1199px)]:pr-0 [@media(max-width:1199px)]:col-span-12 [@media(max-width:1199px)]:mb-[30px]">
                     <div className="flex items-center justify-between mb-[10px]">
                         <div className="text-[24px] font-bold leading-[35px]">39 đánh giá</div>
-                        <div className="underline leading-[1.5715] font-semibold text-[14px] cursor-pointer">VIẾT ĐÁNH GIÁ</div>
+                        <div onClick={() => setOpenRatingDialog(true)} className="underline leading-[1.5715] font-semibold text-[14px] cursor-pointer">VIẾT ĐÁNH GIÁ</div>
                     </div>
+                    <Dialog
+                        open={openRatingDialog}
+                        onClose={() => setOpenRatingDialog(false)}
+                        sx={{
+                            maxHeight: '700px',
+                            height: '700px',
+                            borderRadius: '20px'
+                        }}
+                        maxWidth='md'
+                        fullWidth
+                        slotProps={{
+                            paper: {
+                                sx: {
+                                    borderRadius: '10px',
+                                    '@media (max-width: 768px)': {
+                                        margin: 0,
+                                        maxWidth: '100% !important',
+                                        width: '100%',
+                                        borderRadius: 0,
+                                    }
+                                }
+                            }
+                        }}
+                    >
+                        <DialogTitle sx={{ paddingX: '24px', paddingTop: '30px', paddingBottom: '16px' }}>
+                            <div className="flex items-center justify-between">
+                                <div></div>
+                                <div className="text-[24px] font-semibold">Viết đánh giá</div>
+                                <IconButton disableRipple onClick={() => setOpenRatingDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                    <CloseIcon sx={{ fontSize: '30px', }} />
+                                </IconButton>
+                            </div>
+                        </DialogTitle>
+                        <DialogContent sx={{ paddingX: '50px' }}>
+                            <div className="p-[20px] my-[24px] bg-[#EFEFEF] rounded-[10px] flex items-center">
+                                <img src="https://image.hsv-tech.io/65x65/bbx/common/53dd920f-cd75-45b8-bdd5-fd311def024c.webp" alt="" className="w-[65px] h-[65px] min-h-[65px]" />
+                                <div className="ml-[15px] flex-1">
+                                    <div className="text-[14px] font-semibold leading-[20px]">AMUSE</div>
+                                    <div className="leading-[23px]">Son Thạch Bóng Thuần Chay Amuse Jel-Fit Tint 3.8g</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="grid grid-cols-2 max-md:grid-cols-1">
+                                    <div className="mb-[10px] max-md:mb-[20px]">
+                                        <div className="pb-[8px] leading-[1.5715] text-[14px]">Bạn có sẵn sàng giới thiệu sản phẩm này không?</div>
+                                        <ToggleButtonGroup
+                                            value={helpful}
+                                            exclusive
+                                            onChange={(_, newValue) => { if (newValue !== null) setHelpful(newValue) }}
+                                            sx={{
+                                                borderRadius: '999px',
+                                                border: '1px solid #e0e0e0',
+                                                overflow: 'hidden',
+                                                '& .MuiToggleButton-root': {
+                                                    border: 'none',
+                                                    fontSize: '14px',
+                                                    fontWeight: '700',
+                                                    padding: '7px 15px',
+                                                    textTransform: 'none',
+                                                    transition: 'background-color 300ms ease, color 300ms ease, border-radius 300ms ease',
+                                                },
+                                                '& .MuiToggleButton-root.Mui-selected': {
+                                                    backgroundColor: 'black',
+                                                    color: 'white',
+                                                    borderRadius: '999px',
+                                                    '&:hover': {
+                                                        backgroundColor: '#333',
+                                                    }
+                                                },
+                                                '& .MuiToggleButton-root:not(.Mui-selected)': {
+                                                    backgroundColor: 'white',
+                                                    color: 'black',
+                                                },
+                                            }}
+                                        >
+                                            <ToggleButton value="co" disableRipple>Có</ToggleButton>
+                                            <ToggleButton value="khong" disableRipple>Không</ToggleButton>
+                                        </ToggleButtonGroup>
+                                    </div>
+                                    <div className="mb-[10px]">
+                                        <div className="pb-[8px] leading-[1.5715] text-[14px]">Đánh giá chung <span className="text-red-500">*</span></div>
+                                        <Rating name="half-rating-read" defaultValue={5} precision={1} sx={{ color: '#FADB14', fontSize: '32px', gap: '8px' }} />
+                                    </div>
+                                </div>
+                                <Divider sx={{ marginY: '15px' }} />
+                                <div className="grid grid-cols-2 max-md:grid-cols-1">
+                                    <div className="pr-[10px] mb-[10px] max-md:mb-[20px] max-md:pr-0">
+                                        <div className="pb-[8px] leading-[1.5715] text-[14px]">Biệt danh <span className="text-red-500">*</span></div>
+                                        <input type="text" placeholder="v.d. Vincent" className="w-full p-[11px] text-[16px] rounded-[5px] border border-[#d9d9d9] outline-none transition-all ease-in-out duration-200 focus:border-black placeholder:text-[14px] hover:border-black cursor-pointer" />
+                                    </div>
+                                    <div className="pl-[10px] mb-[10px] max-md:pl-0">
+                                        <div className="pb-[8px] leading-[1.5715] text-[14px]">Email <span className="text-red-500">*</span></div>
+                                        <input type="text" placeholder="v.d. abc@gmail.com" className="w-full p-[11px] text-[16px] rounded-[5px] border border-[#d9d9d9] outline-none transition-all ease-in-out duration-200 focus:border-black placeholder:text-[14px] hover:border-black cursor-pointer" />
+                                    </div>
+                                </div>
+                                <Divider sx={{ marginY: '15px' }} />
+                                <div className="grid grid-cols-2 max-md:grid-cols-1">
+                                    <div className="pr-[10px] mb-[10px] max-md:mb-[20px] max-md:pr-0">
+                                        <div className="pb-[8px] leading-[1.5715] text-[14px]">Tóm tắt đánh giá <span className="text-red-500">*</span></div>
+                                        <input type="text" placeholder="Tóm tắt đánh giá của bạn" className="w-full p-[11px] text-[16px] rounded-[5px] border border-[#d9d9d9] outline-none transition-all ease-in-out duration-200 focus:border-black placeholder:text-[14px] hover:border-black cursor-pointer" />
+                                        <div className="text-[14px] leading-[22px] text-[#646464] mt-[10px] md:hidden">
+                                            Tóm tắt mọi thứ trong 1 câu. Ví dụ: Tôi cực kì ưng ý
+                                        </div>
+                                    </div>
+                                    <div className="pl-[10px] mb-[10px] max-md:pl-0">
+                                        <div className="pb-[8px] leading-[1.5715] text-[14px]">Hình ảnh</div>
+                                        <div className="flex items-center px-[15px] py-[8px] border-1 border-[#d9d9d9] rounded-[38px] h-[50px] w-fit cursor-pointer">
+                                            <FileUploadIcon sx={{ fontSize: '18px' }} />
+                                            <div className="ml-[8px] text-[14px] leading-[1.5715]">
+                                                Tải ảnh lên
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="text-[14px] leading-[22px] text-[#646464] mb-[20px] max-md:hidden">
+                                    Tóm tắt mọi thứ trong 1 câu. Ví dụ: Tôi cực kì ưng ý
+                                </div>
+                                <div className="grid grid-cols-1 mb-[10px] max-md:mt-[10px]">
+                                    <div className="pb-[8px] leading-[1.5715] text-[14px]">Đánh giá chi tiết</div>
+                                    <textarea name="" id="" placeholder="Viết đánh giá chi tiết" className="w-full h-[100px] text-[16px] p-[11px] border border-gray-300 hover:border-black rounded-[5px] focus:outline-none focus:shadow-[0_0_0_2px_rgb(234,199,200)] transition-all duration-200 ease-in-out whitespace-nowrap overflow-x-auto cursor-pointer"></textarea>
+                                </div>
+                                <div className="text-[14px] leading-[22px] text-[#646464] mb-[20px]" >
+                                    Bạn có thể nói thêm về sản phẩm ở dưới đây, ví dụ như độ hoàn thiện, sự thoải mái
+                                </div>
+                                <div className="mt-[30px] flex items-center justify-center px-[40px] rounded-[38px] text-white w-fit mx-auto h-[40px] text-[14px] font-bold cursor-pointer mb-[10px]" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>GỬI CHO CHÚNG TÔI</div>
+                            </div>
+                        </DialogContent>
+                    </Dialog>
                     <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly sx={{ color: 'black', fontSize: '32px', gap: '6px', marginBottom: '20px' }} />
                     <div>
                         <div className="flex items-center mb-[15px]">
@@ -750,7 +1282,7 @@ const ProductDetailPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-8 px-[10px]">
+                <div className="col-span-8 px-[10px] [@media(max-width:1199px)]:col-span-12">
                     <div>
                         <div className="p-0 mb-[15px]">
                             <div className="text-14px">
@@ -881,10 +1413,10 @@ const ProductDetailPage = () => {
             </div>
             <Divider sx={{ marginTop: '50px' }} />
             <div className="grid grid-cols-12 my-[50px]">
-                <div className="col-span-4 text-[24px] font-bold leading-[35px]">
+                <div className="col-span-4 text-[24px] font-bold leading-[35px] [@media(max-width:1199px)]:col-span-12 [@media(max-width:1199px)]:mb-[30px]">
                     Hỏi đáp
                 </div>
-                <div className="col-span-8">
+                <div className="col-span-8 [@media(max-width:1199px)]:col-span-12">
                     <Autocomplete
                         options={questions}
                         inputValue=""
@@ -960,7 +1492,7 @@ const ProductDetailPage = () => {
             </div>
             <Divider sx={{ marginTop: '50px' }} />
             <div className="grid grid-cols-12 my-[60px]">
-                <div className="col-span-4">
+                <div className="col-span-4 [@media(max-width:1199px)]:col-span-12 [@media(max-width:1199px)]:mb-[30px]">
                     <div className="text-[24px] font-bold leading-[35px]">
                         Sản phẩm liên quan
                     </div>
@@ -970,114 +1502,114 @@ const ProductDetailPage = () => {
                         </div>
                     </Link>
                 </div>
-                <div className="col-span-8">
-                        <div className="grid grid-cols-3">
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
-                            <div className="px-[5px]">
-                                <ProductCard/>
-                            </div>
+                <div className="col-span-8 [@media(max-width:1199px)]:col-span-12">
+                    <div className="grid grid-cols-3 [@media(max-width:576px)]:grid-cols-2">
+                        <div className="px-[5px]">
+                            <ProductCard />
                         </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                        <div className="px-[5px]">
+                            <ProductCard />
+                        </div>
+                    </div>
                 </div>
             </div>
             <Divider />
             <div className="my-[10px]">
                 <div className="mb-[20px] text-[24px] font-bold text-center">BẠN ĐÃ XEM GẦN ĐÂY</div>
                 <div className='relative'>
-                <Swiper
-                    spaceBetween={20}
-                    navigation={{
-                        nextEl: '.banner-next',
-                        prevEl: '.banner-prev',
-                    }}
-                    breakpoints={{
-                        0: {
-                            slidesPerView: 2
-                        },
-                        640: {
-                            slidesPerView: 2
-                        },
-                        768: {
-                            slidesPerView: 3
-                        },
-                        1024: {
-                            slidesPerView: 4
-                        },
-                        1280: {
-                            slidesPerView: 5
-                        },
-                    }}
-                    modules={[Navigation]}
-                    className="mt-5 w-[91%]"
-                    onSlideChange={handleSlideChange}
-                    onInit={handleSlideChange}
-                >
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ProductCard />
-                    </SwiperSlide>
-                </Swiper>
-                <div className={`banner-prev absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer z-50 bg-white left-[50px] top-[45%] [@media(max-width:1120px)]:left-[30px]  [@media(max-width:1020px)]:left-[25px] [@media(max-width:950px)]:left-[20px] [@media(max-width:768px)]:left-[15px] [@media(max-width:576px)]:left-0 shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)] transition-opacity duration-300 ${isBeginning ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                    <ArrowBackIosNewOutlinedIcon sx={{ fontSize: 18 }} />
+                    <Swiper
+                        spaceBetween={20}
+                        navigation={{
+                            nextEl: '.history-next',
+                            prevEl: '.history-prev',
+                        }}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 2
+                            },
+                            640: {
+                                slidesPerView: 2
+                            },
+                            768: {
+                                slidesPerView: 3
+                            },
+                            1024: {
+                                slidesPerView: 4
+                            },
+                            1280: {
+                                slidesPerView: 5
+                            },
+                        }}
+                        modules={[Navigation]}
+                        className="mt-5"
+                        onSlideChange={handleSlideChange}
+                        onInit={handleSlideChange}
+                    >
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <ProductCard />
+                        </SwiperSlide>
+                    </Swiper>
+                    <div className={`history-prev absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer z-50 bg-white left-[-20px] top-[45%] shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)] transition-opacity duration-300 ${isBeginning ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                        <ArrowBackIosNewOutlinedIcon sx={{ fontSize: 18 }} />
+                    </div>
+                    <div className={`history-next absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer z-50 bg-white right-[-20px] top-[45%] shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)] transition-opacity duration-300 ${isEnd ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                        <ArrowForwardIosOutlinedIcon sx={{ fontSize: 18 }} />
+                    </div>
                 </div>
-                <div className={`banner-next absolute w-[50px] h-[50px] rounded-full flex items-center justify-center cursor-pointer z-50 bg-white right-[50px] top-[45%] [@media(max-width:1120px)]:right-[30px]  [@media(max-width:1020px)]:right-[25px] [@media(max-width:950px)]:right-[20px] [@media(max-width:768px)]:right-[15px] [@media(max-width:576px)]:right-0 shadow-[0_54px_55px_rgba(0,0,0,0.25),0_-12px_30px_rgba(0,0,0,0.12),0_4px_6px_rgba(0,0,0,0.12),0_12px_13px_rgba(0,0,0,0.17),0_-3px_5px_rgba(0,0,0,0.09)] transition-opacity duration-300 ${isEnd ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                    <ArrowForwardIosOutlinedIcon sx={{ fontSize: 18 }} />
-                </div>
-            </div>
             </div>
         </div>
     )

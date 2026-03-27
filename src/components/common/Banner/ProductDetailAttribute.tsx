@@ -5,7 +5,7 @@ import SwapCallsOutlinedIcon from '@mui/icons-material/SwapCallsOutlined';
 
 const ProductDetailAttribute = () => {
     return (
-        <div className="mt-[30px] grid grid-cols-2 gap-[10px]">
+        <div className="mt-[30px] grid grid-cols-2 gap-[10px] max-md:grid-cols-1 max-md:gap-[15px] max-md:mb-[15px]">
             <div className="flex items-center">
                 <StarBorderOutlinedIcon sx={{ fontSize: '24px', marginRight: '10px' }} />
                 <div className="text-[14px]">Nhận <b>HSV Point</b> cho mỗi lần mua</div>
