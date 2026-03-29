@@ -1,4 +1,5 @@
 import AppRoutes from "./routes"
+import 'leaflet/dist/leaflet.css'
 
 
 const App = () => {

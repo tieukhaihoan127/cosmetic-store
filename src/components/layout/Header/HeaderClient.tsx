@@ -59,7 +59,7 @@ export default function HeaderClient() {
                     <div className="flex flex-1 items-center justify-end max-md:flex-none">
                         <SearchProduct/>
                         <div className="flex items-center xl:pl-[40px] lg:pl-[20px] md:pl-[20px] gap-6 [@media(max-width:1144px)]:gap-2.5 ">
-                            <HeaderActionItem icon={<StoreOutlinedIcon sx={{ fontSize: {sm:25, md: 28, lg:30} }}/>} label="Hệ thống cửa hàng" to="/store"/>
+                            <HeaderActionItem icon={<StoreOutlinedIcon sx={{ fontSize: {sm:25, md: 28, lg:30} }}/>} label="Hệ thống cửa hàng" to="/stores"/>
                             <HeaderActionItem icon={<EventNoteOutlinedIcon sx={{ fontSize: {sm:25, md: 28, lg:30} }}/>} label="Tạp chí làm đẹp" to="/blog"/>                        
                         </div>
                         <HeaderMenu/>
