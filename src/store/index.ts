@@ -3,13 +3,15 @@ import hoveredMenuReducer from './slices/hoveredMenuSlice'
 import filterMenuReducer from './slices/clickFilterButtonSlice'
 import filterFloatingMenuReducer from './slices/clickFilterFloatingButton'
 import clickAddItemMobile from './slices/clickAddItemMobile'
+import clickWishlistReducer from './slices/clickWishlistSlice'
 
 export const store = configureStore({
   reducer: {
     hoveredMenu: hoveredMenuReducer,
     filterDrawer: filterMenuReducer,
     filterFloatingDrawer: filterFloatingMenuReducer,
-    mobileAddProductButton: clickAddItemMobile
+    mobileAddProductButton: clickAddItemMobile,
+    wishlistDrawer: clickWishlistReducer
   },
 });
 
