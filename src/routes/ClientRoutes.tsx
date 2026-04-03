@@ -7,6 +7,7 @@ import CollectionPage from '../pages/CollectionPage'
 import ProductDetailPage from '../pages/ProductDetailPage'
 import ReviewPage from '../pages/ReviewPage'
 import StorePage from '../pages/StorePage'
+import HelpCenterPage from '../pages/HelpCenterPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -39,6 +40,10 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: '/stores',
                 element: <StorePage />
+            },
+            {
+                path: '/help-center',
+                element: <HelpCenterPage />
             }
         ]
     }
