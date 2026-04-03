@@ -13,6 +13,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { useAppDispatch } from '../../../store/hooks';
+import { openLoginDialog } from '../../../store/slices/clickLoginSlice';
 
 interface MenuItem {
   key: string;
@@ -31,6 +33,8 @@ export default function HeaderSidebar() {
   const handleToggle = (key: string) => {
     setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
   };
+
+  const dispatch = useAppDispatch();
 
   const menuItems = [
     {
@@ -319,6 +323,11 @@ export default function HeaderSidebar() {
     }
   ];
 
+  const handleOpenLoginDialog = () => {
+    setDrawerOpen(false);
+    dispatch(openLoginDialog());
+  }
+
   const renderMenuItems = (items: MenuItem[], level = 0) => {
     return items.map((item) => (
       <React.Fragment key={item.key}>
@@ -489,6 +498,36 @@ export default function HeaderSidebar() {
                     primary: {
                       sx: {
                         fontWeight: "bold",
+                        transition: "color  0.3s ease",
+                      }
+                    }
+                  }} />
+                </ListItemButton>
+              </ListItem>
+              <ListItem  key={"Đăng nhập"} disablePadding sx={{
+                marginTop: "10px",
+                marginBottom: "8px"
+              }}>
+                <ListItemButton disableRipple onClick={handleOpenLoginDialog} sx={{
+                  display: "flex", alignItems: "center", "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                  "&:hover .MuiTypography-root": {
+                    color: "var(--muted-pink)",
+                  },
+                  "&:hover svg": {
+                    color: "var(--muted-pink)",
+                    transition: "color 0.3s ease",
+                  },
+                  paddingRight: "24px",
+                  paddingLeft: "24px",
+                  paddingTop: "6px",
+                  paddingBottom: "6px"
+                }}>
+                  <ListItemText primary={"Đăng nhập"} slotProps={{
+                    primary: {
+                      sx: {
+                        fontSize: "14px",
                         transition: "color  0.3s ease",
                       }
                     }

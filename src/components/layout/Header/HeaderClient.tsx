@@ -19,6 +19,7 @@ import { clearHoveredCategory, setHoveredCategory } from "../../../store/slices/
 import CategoryHover from "../../ui/Menu/CategoryHover";
 import { openWishlistDrawer } from "../../../store/slices/clickWishlistSlice";
 import { openCartDrawer } from "../../../store/slices/clickCartSlice";
+import { openLoginDialog } from "../../../store/slices/clickLoginSlice";
 
 export default function HeaderClient() {
 
@@ -80,7 +81,12 @@ export default function HeaderClient() {
                             }}
                         />
                         <div className="flex items-center gap-3 max-md:gap-4 max-sm:gap-3">
-                            <HeaderActionItem icon={<AccountCircleOutlinedIcon sx={{ fontSize: {sm:25, md: 28, lg:30} }}/>} label="Đăng nhập" to="/login"/>
+                            <div onClick={() => dispatch(openLoginDialog())} className="flex justify-center items-center hover:cursor-pointer max-md:hidden">
+                                <AccountCircleOutlinedIcon sx={{ fontSize: {sm:25, md: 28, lg:30} }}/>
+                                <div className="font-bold text-[12px] text-xs ml-2 text-[var(--text_primary)] [@media(max-width:1144px)]:hidden">
+                                    Đăng nhập
+                                </div>
+                            </div>
                             <FavoriteBorderOutlinedIcon onClick={() => dispatch(openWishlistDrawer())} sx={{ fontSize: {sm:25, md: 28, lg:30}, textAlign: 'right', cursor: 'pointer' }}/>
                             <ShoppingCartOutlinedIcon onClick={() => dispatch(openCartDrawer())} sx={{ fontSize: {sm:25, md: 28, lg:30}, cursor: 'pointer' }}/>
                         </div>  

@@ -22,6 +22,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import { closeLoginDialog } from "../store/slices/clickLoginSlice";
+import InputAdornment from "@mui/material/InputAdornment";
 
 
 const MainLayout = () => {
@@ -31,6 +33,8 @@ const MainLayout = () => {
   const isOpenWishlist = useAppSelector((state) => state.wishlistDrawer.isOpen);
 
   const isOpenCart = useAppSelector((state) => state.cartDrawer.isOpen);
+
+  const isOpenLogin = useAppSelector((state) => state.loginDialog.isOpen);
 
   const isXS = useMediaQuery('(max-width: 576px)');
 
@@ -588,6 +592,95 @@ const MainLayout = () => {
           </div>
         </div>
       </Drawer>
+      <Dialog
+        open={isOpenLogin}
+        onClose={() => dispatch(closeLoginDialog())}
+        fullScreen={isXS}
+        fullWidth
+        slotProps={{
+          paper: {
+            sx: {
+              borderRadius: '10px',
+              padding: '24px',
+              width: '500px',
+              maxWidth: '100%'
+            }
+          }
+        }}
+      >
+        <DialogTitle sx={{ padding: '0'}}>
+          <div className="flex items-center justify-between">
+            <div ></div>
+            <IconButton disableRipple onClick={() => dispatch(closeLoginDialog())} sx={{ transition: '300ms ease', '&:hover': { color: 'black' }, padding: 0 }}>
+              <CloseIcon sx={{ fontSize: '30px', }} />
+            </IconButton>
+          </div>
+        </DialogTitle>
+        <DialogContent sx={{ textAlign: 'center', width: '320px', margin: 'auto', paddingY: '30px', paddingX: '0' }}>
+          <div className="mb-[30px]">
+            <div className="text-[24px] font-bold mb-[15px]">
+              ĐĂNG NHẬP
+            </div>
+            <div className="font-medium text-[14px] leading-[17px]">
+              Bạn chưa có tài khoản? Không cần đăng ký. Đăng nhập nhanh với Beauty Box bằng số điện thoại.
+            </div>
+          </div>
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="84"
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <span>+</span>
+                  </InputAdornment>
+                ),
+              },
+            }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                padding: '11px',
+                backgroundColor: '#f6f6f6',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                '& fieldset': {
+                  border: '1px solid #b7b6c2',
+                  transition: 'all 200ms ease-in-out',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#bf585b',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#bf585b',
+                  boxShadow: '0 0 0 2px rgb(234,199,200)',
+                },
+              },
+              '& .MuiInputBase-input': {  
+                padding: '0px !important',
+              },
+              '& .MuiAutocomplete-input': {
+                padding: '0px !important',
+                cursor: 'pointer',
+              },
+              '& input::placeholder': {
+                fontSize: '14px',
+                color: '#858585',
+                opacity: 1,
+              },
+            }}
+          />
+          <div className="text-white h-[40px] px-[20px] py-[6px] mt-[25px] rounded-[40px] flex items-center justify-center cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+            ĐĂNG NHẬP
+          </div>
+          <div className="mt-[20px] text-[12px] font-medium">
+            *Vui lòng không hủy đơn hàng khi đã thanh toán*
+          </div>
+          <div className="mt-[20px] px-[9px] text-[13px] text-[#5aa000] leading-[17px]">
+            Đăng nhập ngay để mua sắm dễ dàng hơn, sử dụng những tiện ích mới nhất và tận hưởng thêm nhiều ưu đãi độc quyền dành riêng cho thành viên Beauty Box.
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

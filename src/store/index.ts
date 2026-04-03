@@ -5,6 +5,7 @@ import filterFloatingMenuReducer from './slices/clickFilterFloatingButton'
 import clickAddItemMobile from './slices/clickAddItemMobile'
 import clickWishlistReducer from './slices/clickWishlistSlice'
 import clickCartReducer from './slices/clickCartSlice'
+import clickLoginReducer from './slices/clickLoginSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
     filterFloatingDrawer: filterFloatingMenuReducer,
     mobileAddProductButton: clickAddItemMobile,
     wishlistDrawer: clickWishlistReducer,
-    cartDrawer: clickCartReducer
+    cartDrawer: clickCartReducer,
+    loginDialog: clickLoginReducer,
   },
 });
 
