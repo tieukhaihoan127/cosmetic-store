@@ -136,7 +136,7 @@ const informations = [
     }
 ];
 
-const QuestionPage = () => {
+const QuestionDetailPage = () => {
 
     const imageUrl = "https://beautybox.com.vn/images/helpCenter.webp";
 
@@ -279,4 +279,4 @@ const QuestionPage = () => {
     )
 }
 
-export default QuestionPage
+export default QuestionDetailPage

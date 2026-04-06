@@ -9,6 +9,8 @@ import ReviewPage from '../pages/ReviewPage'
 import StorePage from '../pages/StorePage'
 import HelpCenterPage from '../pages/HelpCenterPage'
 import QuestionPage from '../pages/QuestionPage'
+import OrderTrackingPage from '../pages/OrderTrackingPage'
+import OrderTrackingDetailPage from '../pages/OrderTrackingDetailPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -49,6 +51,14 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: '/help-center/questions',
                 element: <QuestionPage />
+            },
+            {
+                path: '/order-tracking',
+                element: <OrderTrackingPage />
+            },
+            {
+                path: '/track-orders/:id',
+                element: <OrderTrackingDetailPage />
             }
         ]
     }
