@@ -6,6 +6,7 @@ import clickAddItemMobile from './slices/clickAddItemMobile'
 import clickWishlistReducer from './slices/clickWishlistSlice'
 import clickCartReducer from './slices/clickCartSlice'
 import clickLoginReducer from './slices/clickLoginSlice'
+import clickPreviewOrderReducer from './slices/clickPreviewOrderSlice'
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     wishlistDrawer: clickWishlistReducer,
     cartDrawer: clickCartReducer,
     loginDialog: clickLoginReducer,
+    previewOrderDrawer: clickPreviewOrderReducer,
   },
 });
 

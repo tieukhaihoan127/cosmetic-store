@@ -11,6 +11,7 @@ import HelpCenterPage from '../pages/HelpCenterPage'
 import QuestionPage from '../pages/QuestionPage'
 import OrderTrackingPage from '../pages/OrderTrackingPage'
 import OrderTrackingDetailPage from '../pages/OrderTrackingDetailPage'
+import PreviewOrderPage from '../pages/PreviewOrderPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -59,6 +60,10 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: '/track-orders/:id',
                 element: <OrderTrackingDetailPage />
+            },
+            {
+                path: '/preview-order',
+                element: <PreviewOrderPage />
             }
         ]
     }
