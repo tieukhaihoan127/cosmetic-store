@@ -12,6 +12,7 @@ import QuestionPage from '../pages/QuestionPage'
 import OrderTrackingPage from '../pages/OrderTrackingPage'
 import OrderTrackingDetailPage from '../pages/OrderTrackingDetailPage'
 import PreviewOrderPage from '../pages/PreviewOrderPage'
+import CheckoutPage from '../pages/CheckoutPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -64,6 +65,10 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: '/preview-order',
                 element: <PreviewOrderPage />
+            },
+            {
+                path: '/check-out',
+                element: <CheckoutPage />
             }
         ]
     }

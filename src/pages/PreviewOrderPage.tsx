@@ -121,7 +121,7 @@ const PreviewOrderPage = () => {
                     </div>
                 </div>
                 <div className='col-span-4 [@media(max-width:992px)]:col-span-5 [@media(max-width:800px)]:hidden'>
-                    <div className='pt-[15px] pb-[20px] rounded-[15px] border-1 border-[#dfdfdf]'>
+                    <div className='pt-[15px] pb-[20px] rounded-[5px] border-1 border-[#dfdfdf] shadow-[0px_0px_10px_rgba(57,105,179,0.25)] sticky top-[23%]'>
                         <div className='text-[14px] font-bold px-[15px]'>
                             Đơn hàng
                         </div>
@@ -256,14 +256,14 @@ const PreviewOrderPage = () => {
                         <div className='px-[15px] font-medium text-[14px]'>
                             Mã giảm giá, voucher có thể thêm vào ở màn hình kế tiếp
                         </div>
-                        <div className='px-[20px] mt-[20px]'>
-                            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                        <div className='px-[15px] mt-[20px]'>
+                            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
                                 TIẾP TỤC
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='[@media(min-width:800px)]:hidden fixed bottom-0 left-0 right-0 bg-white pt-[15px] pb-[20px] border-t-1 border-black'>
+                <div className='[@media(min-width:800px)]:hidden fixed bottom-0 left-0 right-0 bg-white pt-[15px] pb-[20px] shadow-[0px_0px_10px_rgba(57,105,179,0.25)]'>
                     <div className='absolute -top-[16px] left-1/2 -translate-x-1/2'>
                         <div onClick={() => dispatch(openPreviewOrderDrawer())} className='w-[40px] h-[40px] bg-white rounded-full shadow-[0_-2px_8px_rgba(0,0,0,0.15)] flex items-center justify-center cursor-pointer'>
                             <KeyboardArrowUpIcon sx={{ fontSize: '24px' }} />
@@ -278,7 +278,7 @@ const PreviewOrderPage = () => {
                         Mã giảm giá, voucher có thể thêm vào ở màn hình kế tiếp
                     </div>
                     <div className='mt-[20px] px-[23px]'>
-                        <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                        <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
                             TIẾP TỤC
                         </div>
                     </div>
@@ -440,8 +440,8 @@ const PreviewOrderPage = () => {
                         <div className='px-[15px] font-medium text-[14px]'>
                             Mã giảm giá, voucher có thể thêm vào ở màn hình kế tiếp
                         </div>
-                        <div className='px-[20px] mt-[20px]'>
-                            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                        <div className='px-[15px] mt-[20px]'>
+                            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
                                 TIẾP TỤC
                             </div>
                         </div>
