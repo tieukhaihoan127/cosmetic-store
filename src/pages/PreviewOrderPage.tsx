@@ -5,7 +5,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PreviewProductCard from '../components/ui/Card/PreviewProductCard';
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
@@ -18,9 +18,15 @@ const PreviewOrderPage = () => {
 
     const [expanded, setExpanded] = useState(false);
 
+    const navigate = useNavigate();
+
     const dispatch = useAppDispatch();
 
     const previewProducts = useAppSelector((state) => state.previewOrderDrawer);
+
+    const handleCheckout = () => {
+        navigate('/check-out');
+    }
 
     return (
         <div className='max-w-[1220px] mx-auto mt-[15px] px-[5%]'>
@@ -257,7 +263,7 @@ const PreviewOrderPage = () => {
                             Mã giảm giá, voucher có thể thêm vào ở màn hình kế tiếp
                         </div>
                         <div className='px-[15px] mt-[20px]'>
-                            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                            <div onClick={handleCheckout} className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
                                 TIẾP TỤC
                             </div>
                         </div>
@@ -278,7 +284,7 @@ const PreviewOrderPage = () => {
                         Mã giảm giá, voucher có thể thêm vào ở màn hình kế tiếp
                     </div>
                     <div className='mt-[20px] px-[23px]'>
-                        <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                        <div onClick={handleCheckout} className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
                             TIẾP TỤC
                         </div>
                     </div>
@@ -441,7 +447,7 @@ const PreviewOrderPage = () => {
                             Mã giảm giá, voucher có thể thêm vào ở màn hình kế tiếp
                         </div>
                         <div className='px-[15px] mt-[20px]'>
-                            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                            <div onClick={handleCheckout} className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
                                 TIẾP TỤC
                             </div>
                         </div>

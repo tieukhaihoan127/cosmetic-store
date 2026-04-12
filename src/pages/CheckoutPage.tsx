@@ -1,4 +1,3 @@
-import Rating from '@mui/material/Rating'
 import RemoveIcon from '@mui/icons-material/Remove'
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
@@ -6,13 +5,11 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import PreviewProductCard from '../components/ui/Card/PreviewProductCard';
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { closePreviewOrderDrawer, openPreviewOrderDrawer } from '../store/slices/clickPreviewOrderSlice'
 import Box from '@mui/material/Box'
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import CartCheckbox from '../components/ui/Checkbox/CartCheckbox'
@@ -24,8 +21,6 @@ import ToggleButton from '@mui/material/ToggleButton'
 import InputAdornment from '@mui/material/InputAdornment'
 
 const CheckoutOrderPage = () => {
-
-    const [expanded, setExpanded] = useState(false);
 
     const dispatch = useAppDispatch();
 

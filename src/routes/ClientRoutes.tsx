@@ -13,6 +13,7 @@ import OrderTrackingPage from '../pages/OrderTrackingPage'
 import OrderTrackingDetailPage from '../pages/OrderTrackingDetailPage'
 import PreviewOrderPage from '../pages/PreviewOrderPage'
 import CheckoutPage from '../pages/CheckoutPage'
+import ProfilePage from '../pages/ProfilePage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -69,6 +70,10 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: '/check-out',
                 element: <CheckoutPage />
+            },
+            {
+                path: '/profile',
+                element: <ProfilePage />
             }
         ]
     }

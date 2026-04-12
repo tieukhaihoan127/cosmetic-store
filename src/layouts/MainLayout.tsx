@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 import FooterClient from "../components/layout/Footer/FooterClient"
 import HeaderClient from "../components/layout/Header/HeaderClient"
 import { useAppDispatch, useAppSelector } from "../store/hooks";
@@ -30,6 +30,8 @@ const MainLayout = () => {
 
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+
   const isOpenWishlist = useAppSelector((state) => state.wishlistDrawer.isOpen);
 
   const isOpenCart = useAppSelector((state) => state.cartDrawer.isOpen);
@@ -44,6 +46,11 @@ const MainLayout = () => {
   const [authenticationStep, setAuthenticationStep] = useState<'login' | 'otp'>('login');
   const [second, setSecond] = useState(10);
   const [resend, setResend] = useState(false);
+
+  const handlePayment = () => {
+    navigate('/preview-order');
+    dispatch(closeCartDrawer());
+  }
 
   useEffect(() => {
 
@@ -617,7 +624,7 @@ const MainLayout = () => {
               <div>Click & Collect</div>
               <div>458.000đ</div>
             </div>
-            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+            <div onClick={handlePayment} className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
               Tiếp tục với hình thức giao hàng
             </div>
           </div>
