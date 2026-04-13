@@ -14,6 +14,7 @@ import OrderTrackingDetailPage from '../pages/OrderTrackingDetailPage'
 import PreviewOrderPage from '../pages/PreviewOrderPage'
 import CheckoutPage from '../pages/CheckoutPage'
 import ProfilePage from '../pages/ProfilePage'
+import ProfileLayout from '../layouts/ProfileLayout'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -73,7 +74,13 @@ export const ClientRoutes : RouteObject[] = [
             },
             {
                 path: '/profile',
-                element: <ProfilePage />
+                element: <ProfileLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: <ProfilePage />
+                    }
+                ]
             }
         ]
     }
