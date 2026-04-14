@@ -136,4 +136,22 @@ body {
   background: #bdbdbd;
 }
 
+@layer utilities {
+  .voucher-notch::before {
+    content: "";
+    position: absolute;
+    height: calc(100% - 4px);
+    width: 20px;
+    top: 2px;
+    left: -5px;
+    background: radial-gradient(
+      circle,
+      transparent,
+      transparent 50%,
+      rgb(255, 255, 255) 50%,
+      rgb(255, 255, 255) 100%
+    ) -8px -8px / 15px 18px repeat-y;
+  }
+}
+
 

@@ -15,6 +15,8 @@ import PreviewOrderPage from '../pages/PreviewOrderPage'
 import CheckoutPage from '../pages/CheckoutPage'
 import ProfilePage from '../pages/ProfilePage'
 import ProfileLayout from '../layouts/ProfileLayout'
+import ProfileCouponPage from '../pages/ProfileCouponPage'
+import ProfileQuestionPage from '../pages/ProfileQuestionPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -79,6 +81,14 @@ export const ClientRoutes : RouteObject[] = [
                     {
                         index: true,
                         element: <ProfilePage />
+                    },
+                    {
+                        path: 'coupons',
+                        element: <ProfileCouponPage />
+                    },
+                    {
+                        path: 'questions',
+                        element: <ProfileQuestionPage />
                     }
                 ]
             }

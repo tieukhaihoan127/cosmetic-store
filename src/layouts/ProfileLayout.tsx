@@ -72,9 +72,6 @@ const ProfileLayout = () => {
                     </div>
                     <div className='py-[8px] pl-[10px] pr-[24px] text-[16px]'>
                         Câu hỏi của tôi
-                    </div>
-                    <div className='py-[8px] pl-[10px] pr-[24px] text-[16px]'>
-                        Sự kiện của tôi
                     </div>  
                 </div>
             </div>
