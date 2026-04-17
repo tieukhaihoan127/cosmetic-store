@@ -19,6 +19,8 @@ import ProfileCouponPage from '../pages/ProfileCouponPage'
 import ProfileQuestionPage from '../pages/ProfileQuestionPage'
 import ProfileQuestionDetailPage from '../pages/ProfileQuestionDetailPage'
 import ProfileAddressPage from '../pages/ProfileAddressPage'
+import ProfileOrderStatusPage from '../pages/ProfileOrderStatusPage'
+import StoreDetailPage from '../pages/StoreDetailPage'
 
 export const ClientRoutes : RouteObject[] = [
     {
@@ -51,6 +53,10 @@ export const ClientRoutes : RouteObject[] = [
             {
                 path: '/stores',
                 element: <StorePage />
+            },
+            {
+                path: '/stores/:id',
+                element: <StoreDetailPage />
             },
             {
                 path: '/help-center',
@@ -99,6 +105,10 @@ export const ClientRoutes : RouteObject[] = [
                     {
                         path: 'address',
                         element: <ProfileAddressPage />
+                    },
+                    {
+                        path: 'order',
+                        element: <ProfileOrderStatusPage />
                     }
                 ]
             }
