@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import OrderTabs from "../components/ui/Carousel/OrderTabs"
 
 const ProfileOrderStatusPage = () => {
     return (
@@ -14,6 +15,9 @@ const ProfileOrderStatusPage = () => {
             </div>
             <div className='mb-[15px] text-[24px] font-bold leading[[1.5715] mt-[15px]'>
                 Đơn hàng
+            </div>
+            <div className="mt-[10px]">
+                <OrderTabs />
             </div>
         </div>
     )
