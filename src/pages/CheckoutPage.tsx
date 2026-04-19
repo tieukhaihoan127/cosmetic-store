@@ -19,6 +19,29 @@ import SelectShipmentRadio from '../components/ui/Radio/SelectShipmentRadio'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import ToggleButton from '@mui/material/ToggleButton'
 import InputAdornment from '@mui/material/InputAdornment'
+import Dialog from '@mui/material/Dialog'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
+import Radio from '@mui/material/Radio'
+
+const addresses = [
+    {
+        id: 1,
+        name: "Tiêu",
+        phone: "84764795487",
+        email: "tieukhaihoan127@gmail.com",
+        address: "127 Lãnh Binh Thăng P12, Phường 12, Quận 11, Hồ Chí Minh",
+    },
+    {
+        id: 2,
+        name: "Tiêu",
+        phone: "84764795487",
+        email: "tieukhaihoan127@gmail.com",
+        address: "127 Lãnh Binh Thăng P12 | asd, Xã Bình Khánh, Huyện Cần Giờ, Hồ Chí Minh",
+    },
+];
 
 const CheckoutOrderPage = () => {
 
@@ -28,7 +51,15 @@ const CheckoutOrderPage = () => {
 
     const [exported, setExported] = useState('false');
 
+    const [openAddAddressDialog, setOpenAddAddressDialog] = useState(false);
+
+    const [openEditAddressDialog, setOpenEditAddressDialog] = useState(false);
+
+    const [openChangeAddressDialog, setOpenChangeAddressDialog] = useState(false);
+
     const previewProducts = useAppSelector((state) => state.previewOrderDrawer);
+
+    const [selected, setSelected] = useState(1);
 
     return (
         <div className='max-w-[1220px] mx-auto mt-[15px] px-[5%]'>
@@ -51,7 +82,7 @@ const CheckoutOrderPage = () => {
                             <div className='leading-[26px] text-[18px] font-bold'>Thông tin người mua hàng</div>
                             <div className='text-[#ab2328] text-[14px] leading-1.5715 hover:text-black transition duration-400 ease-in-out cursor-pointer px-[15px]'>Đăng nhập nhanh</div>
                         </div>
-                        <div className='grid grid-cols-2 gap-[15px]'>
+                        {/* <div className='grid grid-cols-2 gap-[15px]'>
                             <TextField
                                 fullWidth
                                 variant="outlined"
@@ -521,6 +552,992 @@ const CheckoutOrderPage = () => {
                                     }
                                 />
                             </div>
+                        </div> */}
+                        <div>
+                            <div className='flex items-center justify-between my-[10px]'>
+                                <div>
+                                    Bạn đã đăng nhập với tài khoản honahoan127@gmail.com
+                                </div>
+                                <div className='text-[#ab2328] leading-1.5715 hover:text-black transition duration-400 ease-in-out cursor-pointer px-[15px]'>
+                                    Đăng xuất
+                                </div>
+                            </div>
+                            <div className='border-1 border-[#d9d9d9] bg-white text-[14px] leading-[1.5715] px-[15px] py-[8px] mt-[30px]'>
+                                <div className='flex items-center justify-between text-[#0992d0]'>
+                                    <div className='font-bold'>Tiêu | 84764795487 | tieukhaihoan127@gmail.com</div>
+                                    <div onClick={() => setOpenChangeAddressDialog(true)} className='cursor-pointer'>Thay đổi</div>
+                                </div>
+                                <div className='mt-1'>
+                                    127 Lanh Binh Thang , Phường 12, Quận 11, Hồ Chí Minh
+                                </div>
+                            </div>
+                            <Dialog
+                                open={openAddAddressDialog}
+                                onClose={() => setOpenAddAddressDialog(false)}
+                                maxWidth={false}
+                                fullWidth
+                                slotProps={{
+                                    paper: {
+                                        sx: { borderRadius: '10px', width: '470px' }
+                                    }
+                                }}
+                            >
+                                <DialogTitle sx={{ paddingX: '15px', paddingY: '24px' }}>
+                                    <div className="flex items-center justify-between">
+                                        <div></div>
+                                        <div className="text-[24px] font-semibold">Thêm địa chỉ</div>
+                                        <IconButton disableRipple onClick={() => setOpenAddAddressDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                            <CloseIcon sx={{ fontSize: '30px', }} />
+                                        </IconButton>
+                                    </div>
+                                </DialogTitle>
+                                <DialogContent sx={{ p: '24px' }}>
+                                    <div className='grid grid-cols-12 gap-[15px]'>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Tên địa chỉ(vd: Văn phòng, Nhà, ...)"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Họ"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Tên"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Email"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="84"
+                                                slotProps={{
+                                                    input: {
+                                                        startAdornment: (
+                                                            <InputAdornment position="start">
+                                                                <span>+</span>
+                                                            </InputAdornment>
+                                                        ),
+                                                    },
+                                                }}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <Autocomplete
+                                                options={[
+                                                    "Quận 1",
+                                                    "Quận 2",
+                                                    "Quận 3",
+                                                    "Quận 4",
+                                                    "Quận 5",
+                                                    "Quận 6",
+                                                    "Quận 7",
+                                                    "Quận 8",
+                                                    "Quận 9",
+                                                    "Quận 10",
+                                                    "Quận 11",
+                                                    "Quận 12",
+                                                    "Quận Bình Thạnh",
+                                                    "Quận Bình Tân",
+                                                    "Quận Gò Vấp",
+                                                    "Quận Phú Nhuận",
+                                                    "Quận Tân Bình",
+                                                    "Quận Tân Phú",
+                                                    "Quận Thủ Đức",
+                                                    "Huyện Bình Chánh",
+                                                    "Huyện Cần Giờ",
+                                                    "Huyện Củ Chi",
+                                                    "Huyện Hóc Môn",
+                                                    "Huyện Nhà Bè",
+                                                ]}
+                                                slotProps={{
+                                                    popper: {
+                                                        placement: 'bottom',
+                                                        modifiers: [
+                                                            {
+                                                                name: 'flip',
+                                                                enabled: false,
+                                                            }
+                                                        ]
+                                                    },
+                                                    paper: {
+                                                        sx: {
+                                                            '& .MuiAutocomplete-option': {
+                                                                fontSize: '14px',
+                                                            },
+                                                            '& .MuiAutocomplete-option[aria-selected="true"]': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                            '& .MuiAutocomplete-option.Mui-focused': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                        }
+                                                    }
+                                                }}
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        placeholder="Quận/huyện"
+                                                        sx={{
+                                                            '& .MuiOutlinedInput-root': {
+                                                                padding: '11px',
+                                                                borderRadius: '5px',
+                                                                cursor: 'pointer',
+                                                                '& fieldset': {
+                                                                    border: '1px solid #d9d9d9',
+                                                                    transition: 'all 200ms ease-in-out',
+                                                                },
+                                                                '&:hover fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                },
+                                                                '&.Mui-focused fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                    boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                                },
+                                                            },
+                                                            '& .MuiAutocomplete-input': {
+                                                                padding: '0 !important',
+                                                                cursor: 'pointer',
+                                                                fontSize: '14px',
+                                                            },
+                                                            '& input::placeholder': {
+                                                                fontSize: '14px',
+                                                            },
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <Autocomplete
+                                                options={[
+                                                    "Quận 1",
+                                                    "Quận 2",
+                                                    "Quận 3",
+                                                    "Quận 4",
+                                                    "Quận 5",
+                                                    "Quận 6",
+                                                    "Quận 7",
+                                                    "Quận 8",
+                                                    "Quận 9",
+                                                    "Quận 10",
+                                                    "Quận 11",
+                                                    "Quận 12",
+                                                    "Quận Bình Thạnh",
+                                                    "Quận Bình Tân",
+                                                    "Quận Gò Vấp",
+                                                    "Quận Phú Nhuận",
+                                                    "Quận Tân Bình",
+                                                    "Quận Tân Phú",
+                                                    "Quận Thủ Đức",
+                                                    "Huyện Bình Chánh",
+                                                    "Huyện Cần Giờ",
+                                                    "Huyện Củ Chi",
+                                                    "Huyện Hóc Môn",
+                                                    "Huyện Nhà Bè",
+                                                ]}
+                                                slotProps={{
+                                                    popper: {
+                                                        placement: 'bottom',
+                                                        modifiers: [
+                                                            {
+                                                                name: 'flip',
+                                                                enabled: false,
+                                                            }
+                                                        ]
+                                                    },
+                                                    paper: {
+                                                        sx: {
+                                                            '& .MuiAutocomplete-option': {
+                                                                fontSize: '14px',
+                                                            },
+                                                            '& .MuiAutocomplete-option[aria-selected="true"]': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                            '& .MuiAutocomplete-option.Mui-focused': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                        }
+                                                    }
+                                                }}
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        placeholder="Phường/xã"
+                                                        sx={{
+                                                            '& .MuiOutlinedInput-root': {
+                                                                padding: '11px',
+                                                                borderRadius: '5px',
+                                                                cursor: 'pointer',
+                                                                '& fieldset': {
+                                                                    border: '1px solid #d9d9d9',
+                                                                    transition: 'all 200ms ease-in-out',
+                                                                },
+                                                                '&:hover fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                },
+                                                                '&.Mui-focused fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                    boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                                },
+                                                            },
+                                                            '& .MuiAutocomplete-input': {
+                                                                padding: '0 !important',
+                                                                cursor: 'pointer',
+                                                            },
+                                                            '& input::placeholder': {
+                                                                fontSize: '14px',
+                                                            },
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Tòa nhà, số nhà, tên đường"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-12 my-[5px]'>
+                                            <FormControlLabel
+                                                sx={{ margin: 0 }}
+                                                control={<CartCheckbox />}
+                                                label={
+                                                    <span style={{ fontSize: '14px', color: '#000000', paddingLeft: '8px', paddingRight: '8px' }}>
+                                                        Đặt làm địa chỉ mặc định
+                                                    </span>
+                                                }
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer font-bold" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                                                LƯU
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </DialogContent>
+                            </Dialog>
+                            <Dialog
+                                open={openEditAddressDialog}
+                                onClose={() => setOpenEditAddressDialog(false)}
+                                maxWidth={false}
+                                fullWidth
+                                slotProps={{
+                                    paper: {
+                                        sx: { borderRadius: '10px', width: '750px' }
+                                    }
+                                }}
+                            >
+                                <DialogTitle sx={{ paddingX: '15px', paddingY: '24px' }}>
+                                    <div className="flex items-center justify-between">
+                                        <div></div>
+                                        <div className="text-[24px] font-semibold">Chỉnh sửa địa chỉ</div>
+                                        <IconButton disableRipple onClick={() => setOpenEditAddressDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                            <CloseIcon sx={{ fontSize: '30px', }} />
+                                        </IconButton>
+                                    </div>
+                                </DialogTitle>
+                                <DialogContent sx={{ p: '24px' }}>
+                                    <div className='grid grid-cols-12 gap-[15px]'>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Tên địa chỉ(vd: Văn phòng, Nhà, ...)"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Họ"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Tên"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Email"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="84"
+                                                slotProps={{
+                                                    input: {
+                                                        startAdornment: (
+                                                            <InputAdornment position="start">
+                                                                <span>+</span>
+                                                            </InputAdornment>
+                                                        ),
+                                                    },
+                                                }}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <Autocomplete
+                                                options={[
+                                                    "Quận 1",
+                                                    "Quận 2",
+                                                    "Quận 3",
+                                                    "Quận 4",
+                                                    "Quận 5",
+                                                    "Quận 6",
+                                                    "Quận 7",
+                                                    "Quận 8",
+                                                    "Quận 9",
+                                                    "Quận 10",
+                                                    "Quận 11",
+                                                    "Quận 12",
+                                                    "Quận Bình Thạnh",
+                                                    "Quận Bình Tân",
+                                                    "Quận Gò Vấp",
+                                                    "Quận Phú Nhuận",
+                                                    "Quận Tân Bình",
+                                                    "Quận Tân Phú",
+                                                    "Quận Thủ Đức",
+                                                    "Huyện Bình Chánh",
+                                                    "Huyện Cần Giờ",
+                                                    "Huyện Củ Chi",
+                                                    "Huyện Hóc Môn",
+                                                    "Huyện Nhà Bè",
+                                                ]}
+                                                slotProps={{
+                                                    popper: {
+                                                        placement: 'bottom',
+                                                        modifiers: [
+                                                            {
+                                                                name: 'flip',
+                                                                enabled: false,
+                                                            }
+                                                        ]
+                                                    },
+                                                    paper: {
+                                                        sx: {
+                                                            '& .MuiAutocomplete-option': {
+                                                                fontSize: '14px',
+                                                            },
+                                                            '& .MuiAutocomplete-option[aria-selected="true"]': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                            '& .MuiAutocomplete-option.Mui-focused': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                        }
+                                                    }
+                                                }}
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        placeholder="Quận/huyện"
+                                                        sx={{
+                                                            '& .MuiOutlinedInput-root': {
+                                                                padding: '11px',
+                                                                borderRadius: '5px',
+                                                                cursor: 'pointer',
+                                                                '& fieldset': {
+                                                                    border: '1px solid #d9d9d9',
+                                                                    transition: 'all 200ms ease-in-out',
+                                                                },
+                                                                '&:hover fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                },
+                                                                '&.Mui-focused fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                    boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                                },
+                                                            },
+                                                            '& .MuiAutocomplete-input': {
+                                                                padding: '0 !important',
+                                                                cursor: 'pointer',
+                                                                fontSize: '14px',
+                                                            },
+                                                            '& input::placeholder': {
+                                                                fontSize: '14px',
+                                                            },
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                        </div>
+                                        <div className='col-span-6'>
+                                            <Autocomplete
+                                                options={[
+                                                    "Quận 1",
+                                                    "Quận 2",
+                                                    "Quận 3",
+                                                    "Quận 4",
+                                                    "Quận 5",
+                                                    "Quận 6",
+                                                    "Quận 7",
+                                                    "Quận 8",
+                                                    "Quận 9",
+                                                    "Quận 10",
+                                                    "Quận 11",
+                                                    "Quận 12",
+                                                    "Quận Bình Thạnh",
+                                                    "Quận Bình Tân",
+                                                    "Quận Gò Vấp",
+                                                    "Quận Phú Nhuận",
+                                                    "Quận Tân Bình",
+                                                    "Quận Tân Phú",
+                                                    "Quận Thủ Đức",
+                                                    "Huyện Bình Chánh",
+                                                    "Huyện Cần Giờ",
+                                                    "Huyện Củ Chi",
+                                                    "Huyện Hóc Môn",
+                                                    "Huyện Nhà Bè",
+                                                ]}
+                                                slotProps={{
+                                                    popper: {
+                                                        placement: 'bottom',
+                                                        modifiers: [
+                                                            {
+                                                                name: 'flip',
+                                                                enabled: false,
+                                                            }
+                                                        ]
+                                                    },
+                                                    paper: {
+                                                        sx: {
+                                                            '& .MuiAutocomplete-option': {
+                                                                fontSize: '14px',
+                                                            },
+                                                            '& .MuiAutocomplete-option[aria-selected="true"]': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                            '& .MuiAutocomplete-option.Mui-focused': {
+                                                                backgroundColor: '#EAC7C8 !important',
+                                                                color: 'white',
+                                                            },
+                                                        }
+                                                    }
+                                                }}
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        placeholder="Phường/xã"
+                                                        sx={{
+                                                            '& .MuiOutlinedInput-root': {
+                                                                padding: '11px',
+                                                                borderRadius: '5px',
+                                                                cursor: 'pointer',
+                                                                '& fieldset': {
+                                                                    border: '1px solid #d9d9d9',
+                                                                    transition: 'all 200ms ease-in-out',
+                                                                },
+                                                                '&:hover fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                },
+                                                                '&.Mui-focused fieldset': {
+                                                                    borderColor: '#bf585b',
+                                                                    boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                                },
+                                                            },
+                                                            '& .MuiAutocomplete-input': {
+                                                                padding: '0 !important',
+                                                                cursor: 'pointer',
+                                                            },
+                                                            '& input::placeholder': {
+                                                                fontSize: '14px',
+                                                            },
+                                                        }}
+                                                    />
+                                                )}
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <TextField
+                                                fullWidth
+                                                variant="outlined"
+                                                placeholder="Tòa nhà, số nhà, tên đường"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        padding: '11px',
+                                                        borderRadius: '5px',
+                                                        cursor: 'pointer',
+                                                        '& fieldset': {
+                                                            border: '1px solid #b7b6c2',
+                                                            transition: 'all 200ms ease-in-out',
+                                                        },
+                                                        '&:hover fieldset': {
+                                                            borderColor: '#bf585b',
+                                                        },
+                                                        '&.Mui-focused fieldset': {
+                                                            borderColor: '#bf585b',
+                                                            boxShadow: '0 0 0 2px rgb(234,199,200)',
+                                                        },
+                                                    },
+                                                    '& .MuiInputBase-input': {
+                                                        padding: '0px !important',
+                                                    },
+                                                    '& .MuiAutocomplete-input': {
+                                                        padding: '0px !important',
+                                                        cursor: 'pointer',
+                                                    },
+                                                    '& input::placeholder': {
+                                                        fontSize: '14px',
+                                                        color: '#858585',
+                                                        opacity: 1,
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                        <div className='col-span-12 my-[5px]'>
+                                            <FormControlLabel
+                                                sx={{ margin: 0 }}
+                                                control={<CartCheckbox />}
+                                                label={
+                                                    <span style={{ fontSize: '14px', color: '#000000', paddingLeft: '8px', paddingRight: '8px' }}>
+                                                        Đặt làm địa chỉ mặc định
+                                                    </span>
+                                                }
+                                            />
+                                        </div>
+                                        <div className='col-span-12'>
+                                            <div className="mx-auto w-[140px] h-[50px] py-[8px] px-[15px] bg-black text-white flex items-center justify-center">
+                                                LƯU
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </DialogContent>
+                            </Dialog>
+                            <Dialog
+                                open={openChangeAddressDialog}
+                                onClose={() => setOpenChangeAddressDialog(false)}
+                                maxWidth={false}
+                                fullWidth
+                                slotProps={{
+                                    paper: {
+                                        sx: { borderRadius: '10px', width: '700px' }
+                                    }
+                                }}
+                            >
+                                <DialogTitle sx={{ paddingX: '15px', paddingY: '24px' }}>
+                                    <div className="flex items-center justify-between">
+                                        <div></div>
+                                        <div className="text-[24px] font-semibold">Chọn địa chỉ</div>
+                                        <IconButton disableRipple onClick={() => setOpenChangeAddressDialog(false)} sx={{ transition: '300ms ease', '&:hover': { color: 'black' } }}>
+                                            <CloseIcon sx={{ fontSize: '30px', }} />
+                                        </IconButton>
+                                    </div>
+                                </DialogTitle>
+                                <DialogContent sx={{ padding: '0' }}>
+                                    <div className="flex flex-col px-[24px] gap-[8px] pb-[48px]">
+                                        {addresses.map((item) => (
+                                            <div>
+                                                <div
+                                                    key={item.id}
+                                                    className="flex items-start gap-2 py-4 cursor-pointer"
+                                                    onClick={() => setSelected(item.id)}
+                                                >
+                                                    <Radio
+                                                        checked={selected === item.id}
+                                                        disableRipple
+                                                        sx={{
+                                                            padding: 0,
+                                                            paddingRight: '10px',
+                                                            "& .MuiSvgIcon-root": { fontSize: 20, color: "#bf585b" },
+                                                            "&.Mui-checked .MuiSvgIcon-root": { color: "#bf585b" },
+                                                            "& .MuiTouchRipple-root": { display: "none" },
+                                                        }}
+                                                    />
+                                                    <div className="flex-1 min-w-0">
+                                                        <p className="text-[14px] text-gray-800">
+                                                            {item.name} | {item.phone} | {item.email}
+                                                        </p>
+                                                        <p className="text-[14px] text-gray-500 mt-2">{item.address}</p>
+                                                    </div>
+                                                    <button
+                                                        className="text-gray-400 hover:text-[#bf585b] transition-colors shrink-0 cursor-pointer"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            setOpenEditAddressDialog(true);
+                                                        }}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <Divider />
+                                            </div>
+                                        ))}
+
+                                    </div>
+                                    <Divider />
+                                    <div className='px-[15px] py-[10px] flex items-center'>
+                                        <div onClick={() => setOpenAddAddressDialog(true)} className='flex-1 cursor-pointer px-[15px] py-[8px] transition-all ease-in-out duration-300 hover:bg-[#FAFAFA]'>+ Thêm địa chỉ</div>
+                                        <div className='cursor-pointer px-[15px] py-[8px] bg-[#ab2328] text-white transition-all ease-in-out duration-300 hover:opacity-80'>Lưu</div>
+                                    </div>
+                                </DialogContent>
+                            </Dialog>
                         </div>
                         <div className='leading-[26px] text-[18px] font-bold mb-[10px] mt-[25px]'>
                             Phương thức thanh toán

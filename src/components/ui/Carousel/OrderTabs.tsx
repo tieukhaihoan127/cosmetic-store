@@ -6,6 +6,10 @@ import "swiper/css";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import SearchIcon from '@mui/icons-material/Search';
+import Divider from "@mui/material/Divider";
+import DialogContent from "@mui/material/DialogContent";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
 
 
 const TABS = [
@@ -20,8 +24,12 @@ const TABS = [
 
 export default function OrderTabs() {
     const [activeTab, setActiveTab] = useState(0);
+
     const swiperRef = useRef<SwiperType | null>(null);
+
     const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
     useEffect(() => {
         const el = wrapperRef.current;
@@ -135,6 +143,114 @@ export default function OrderTabs() {
                     },
                 }}
             />
+            <div className="">
+                <div className="border-1 border-[#efefef] rounded-[5px] px-[20px] py-[15px] text-[14px] leading-[1.5715] mt-[20px]">
+                    <div className="flex items-center gap-[20px]">
+                        <div>04/19/2026</div>
+                        <div className="text-[10px]">|</div>
+                        <div className="flex items-center gap-[10px]">
+                            <div>Mã đơn hàng:</div>
+                            <div>#BW5DAAK3</div>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-[20px] text-[14px] leading-[1.5715] mt-[5px]">
+                        <div className="flex items-center font-bold gap-[10px]">
+                            <div>Hình thức:</div>
+                            <div>Giao hàng</div>
+                        </div>
+                        <div>
+                            2 Sản phẩm (34.000đ)
+                        </div>
+                    </div>
+                    <div className="flex items-center mt-[10px] gap-[10px] text-[14px] leading-[1.5715]">
+                        <div>Giao đến:</div>
+                        <div>127 Lãnh Binh Thăng P12, Phường 12, Quận 11, Hồ Chí Minh</div>
+                    </div>
+                    <Divider sx={{ marginY: '15px' }} />
+                    <div className="flex items-center justify-between flex-wrap gap-y-3">
+                        <div className="flex items-center gap-[10px] font-bold text-[14px] leading-[1.5715]">
+                            <div>Tình trạng:</div>
+                            <div>Đơn hàng đã đặt thành công</div>
+                        </div>
+                        <div className='flex items-center gap-[8px] ml-auto'>
+                            <div onClick={() => setOpenDeleteDialog(true)} className='rounded-[38px] font-bold border-black border-1 py-[8px] px-[15px] text-[14px] cursor-pointer [@media(max-width:906px)]:mt-[15px]'>
+                                Hủy
+                            </div>
+                            <div className='rounded-[38px] font-bold border-black border-1 py-[8px] px-[15px] text-[14px] cursor-pointer [@media(max-width:906px)]:mt-[15px]'>
+                                Xem chi tiết
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="border-1 border-[#efefef] rounded-[5px] px-[20px] py-[15px] text-[14px] leading-[1.5715] mt-[20px]">
+                    <div className="flex items-center gap-[20px]">
+                        <div>04/19/2026</div>
+                        <div className="text-[10px]">|</div>
+                        <div className="flex items-center gap-[10px]">
+                            <div>Mã đơn hàng:</div>
+                            <div>#BW5DAAK3</div>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-[20px] text-[14px] leading-[1.5715] mt-[5px]">
+                        <div className="flex items-center font-bold gap-[10px]">
+                            <div>Hình thức:</div>
+                            <div>Giao hàng</div>
+                        </div>
+                        <div>
+                            2 Sản phẩm (34.000đ)
+                        </div>
+                    </div>
+                    <div className="flex items-center mt-[10px] gap-[10px] text-[14px] leading-[1.5715]">
+                        <div>Giao đến:</div>
+                        <div>127 Lãnh Binh Thăng P12, Phường 12, Quận 11, Hồ Chí Minh</div>
+                    </div>
+                    <Divider sx={{ marginY: '15px' }} />
+                    <div className="flex items-center justify-between flex-wrap gap-y-3">
+                        <div className="flex items-center gap-[10px] font-bold text-[14px] leading-[1.5715]">
+                            <div>Tình trạng:</div>
+                            <div>Đơn hàng đã đặt thành công</div>
+                        </div>
+                        <div className='flex items-center gap-[8px] ml-auto'>
+                            <div onClick={() => setOpenDeleteDialog(true)} className='rounded-[38px] font-bold border-black border-1 py-[8px] px-[15px] text-[14px] cursor-pointer [@media(max-width:906px)]:mt-[15px]'>
+                                Hủy
+                            </div>
+                            <div className='rounded-[38px] font-bold border-black border-1 py-[8px] px-[15px] text-[14px] cursor-pointer [@media(max-width:906px)]:mt-[15px]'>
+                                Xem chi tiết
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <Dialog
+                open={openDeleteDialog}
+                onClose={() => setOpenDeleteDialog(false)}
+                maxWidth={false}
+                fullWidth
+                slotProps={{
+                    paper: {
+                        sx: { borderRadius: '10px', width: '380px' }
+                    }
+                }}
+            >
+                <DialogTitle sx={{ paddingX: '15px', paddingY: '24px' }}>
+                    <div className="flex items-center justify-center">
+                        <div className="text-[24px] font-semibold">Xác nhận</div>
+                    </div>
+                </DialogTitle>
+                <DialogContent sx={{ p: '24px' }}>
+                    <div className="text-center text-[14px] leading-[1.5715]">
+                        Bạn có chắc chắn muốn hủy đơn hàng này?
+                    </div>
+                    <div className="flex items-center mt-[30px] gap-[10px] justify-center">
+                        <div onClick={() => setOpenDeleteDialog(false)} className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer bg-black">
+                            Trở về
+                        </div>
+                        <div className="text-white h-[40px] px-[20px] py-[6px] rounded-[40px] flex items-center justify-center cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #ffd400, #c73130 50.52%, #663695 99.61%)" }}>
+                            Hủy
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }

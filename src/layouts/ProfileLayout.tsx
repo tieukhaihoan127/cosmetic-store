@@ -2,12 +2,22 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import Barcode from 'react-barcode';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import ProfileTabs from '../components/ui/Carousel/ProfileTabs';
 
 const ProfileLayout = () => {
     return (
-        <div className='max-w-[1024px] mx-auto grid grid-cols-12 mt-[20px]'>
-            <div className='pr-[25px] pl-[20px] col-span-4'>
+        <div className='max-w-[1024px] mx-auto grid grid-cols-12 mt-[20px] [@media(max-width:1100px)]:px-[40px]'>
+            <div className="flex items-center text-[#797979] gap-2 leading-relaxed col-span-12 mb-[20px] [@media(min-width:792px)]:hidden">
+                <Link to="/" className="text-[12px]">
+                    Trang chủ
+                </Link>
+                <div className="text-[14px]">{">"}</div>
+                <Link to="/" className="text-[12px]">
+                    Tài khoản
+                </Link>
+            </div>
+            <div className='pr-[25px] pl-[20px] [@media(max-width:792px)]:pr-0 [@media(max-width:792px)]:pl-0 col-span-4 [@media(max-width:1100px)]:col-span-5 [@media(max-width:792px)]:!col-span-12'>
                 <div className="rounded-[10px] border-[#dfdfdf] shadow-[0px_0px_10px_rgba(57,105,179,0.25)] pb-[20px]">
                     <div className="flex items-center gap-[10px] text-left p-[15px]">
                         <AccountCircleOutlinedIcon sx={{ fontSize: '55px' }} />
@@ -57,7 +67,7 @@ const ProfileLayout = () => {
                         </div>
                     </div>
                 </div>
-                <div className='mt-[20px]'>
+                <div className='mt-[20px] [@media(max-width:792px)]:hidden'>
                     <div className='py-[8px] pl-[10px] pr-[24px] text-[16px] font-semibold'>
                         Tài khoản
                     </div>
@@ -74,8 +84,11 @@ const ProfileLayout = () => {
                         Câu hỏi của tôi
                     </div>  
                 </div>
+                <div className='my-[20px] [@media(min-width:792px)]:hidden'>
+                    <ProfileTabs />
+                </div>
             </div>
-            <div className='col-span-8'>
+            <div className='col-span-8 [@media(max-width:1100px)]:col-span-7 [@media(max-width:792px)]:!col-span-12'>
                 <Outlet />
             </div>
         </div>

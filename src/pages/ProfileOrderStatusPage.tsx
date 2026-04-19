@@ -4,7 +4,7 @@ import OrderTabs from "../components/ui/Carousel/OrderTabs"
 const ProfileOrderStatusPage = () => {
     return (
         <div>
-            <div className="flex items-center text-[#797979] gap-2 leading-relaxed">
+            <div className="flex items-center text-[#797979] gap-2 leading-relaxed [@media(max-width:792px)]:hidden">
                 <Link to="/" className="text-[12px]">
                     Trang chủ
                 </Link>

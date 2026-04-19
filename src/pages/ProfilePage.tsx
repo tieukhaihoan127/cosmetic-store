@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ProfilePage = () => {
     return (
         <div>
-            <div className="flex items-center text-[#797979] gap-2 leading-relaxed">
+            <div className="flex items-center text-[#797979] gap-2 leading-relaxed [@media(max-width:792px)]:hidden">
                 <Link to="/" className="text-[12px]">
                     Trang chủ
                 </Link>
@@ -17,7 +17,7 @@ const ProfilePage = () => {
             <div className='mb-[15px] text-[24px] font-bold leading[[1.5715] mt-[15px]'>
                 Tài khoản
             </div>
-            <div className='grid grid-cols-2 gap-[20px]'>
+            <div className='grid grid-cols-2 gap-[20px] [@media(max-width:576px)]:grid-cols-1'>
                 <div className='group'>
                     <label htmlFor="first-name" className='text-[14px] cursor-pointer'>Tên <span className="text-red-500">*</span></label>
                     <TextField

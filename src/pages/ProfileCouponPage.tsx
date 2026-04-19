@@ -12,7 +12,7 @@ const ProfileCouponPage = () => {
 
     return (
         <div>
-            <div className="flex items-center text-[#797979] gap-2 leading-relaxed">
+            <div className="flex items-center text-[#797979] gap-2 leading-relaxed [@media(max-width:792px)]:hidden">
                 <Link to="/" className="text-[12px]">
                     Trang chủ
                 </Link>
@@ -24,7 +24,7 @@ const ProfileCouponPage = () => {
             <div className='mb-[15px] text-[24px] font-bold leading[[1.5715] mt-[15px]'>
                 Ưu đãi của tôi
             </div>
-            <div className='grid grid-cols-2 gap-[20px]'>
+            <div className='grid grid-cols-2 gap-[20px] [@media(max-width:576px)]:grid-cols-1'>
                 <div className='p-[20px] border-1 border-[#d3d7d3] rounded-[5px]'>
                     <div className='flex items-center gap-[10px]'>
                         <LibraryAddOutlinedIcon sx={{ fontSize: '16px' }} />
@@ -55,7 +55,13 @@ const ProfileCouponPage = () => {
                 fullWidth
                 slotProps={{
                     paper: {
-                        sx: { overflow: 'visible' }
+                        sx: {
+                            overflow: 'visible', '@media (max-width: 576px)': {
+                                width: '100%',
+                                maxWidth: '100% !important',
+                                marginX: '25px',
+                            },
+                        }
                     }
                 }}
                 sx={{

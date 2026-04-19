@@ -27,7 +27,7 @@ const ProfileAddressPage = () => {
 
     return (
         <div>
-            <div className="flex items-center text-[#797979] gap-2 leading-relaxed">
+            <div className="flex items-center text-[#797979] gap-2 leading-relaxed [@media(max-width:792px)]:hidden">
                 <Link to="/" className="text-[12px]">
                     Trang chủ
                 </Link>
@@ -44,7 +44,7 @@ const ProfileAddressPage = () => {
                     + Thêm địa chỉ
                 </div>
             </div>
-            <div className='grid grid-cols-2 gap-[10px]'>
+            <div className='grid grid-cols-2 gap-[10px] [@media(max-width:792px)]:grid-cols-1'>
                 <div className='rounded-[10px] border-1 border-[#f0f0f0]'>
                     <div className='flex items-center justify-between p-[15px]'>
                         <div className='text-[14px] leading-[1.5715] font-medium'>127 Lãnh Binh Thăng P12</div>
@@ -102,9 +102,27 @@ const ProfileAddressPage = () => {
                 onClose={() => setOpenAddAddressDialog(false)}
                 maxWidth={false}
                 fullWidth
+                sx={{
+                    '@media (max-width: 576px)': {
+                        '& .MuiDialog-container': {
+                            alignItems: 'flex-end',
+                        }
+                    }
+                }}
                 slotProps={{
                     paper: {
-                        sx: { borderRadius: '10px', width: '470px' }
+                        sx: { 
+                            borderRadius: '10px', 
+                            width: '470px',
+                            '@media (max-width: 576px)': {
+                                width: '100%',
+                                height: '85%',
+                                maxHeight: '100% !important',
+                                maxWidth: '100% !important',
+                                margin: 0,
+                                borderRadius: '10px 10px 0 0',  
+                            }, 
+                        }
                     }
                 }}
             >
@@ -550,9 +568,27 @@ const ProfileAddressPage = () => {
                 onClose={() => setOpenEditAddressDialog(false)}
                 maxWidth={false}
                 fullWidth
+                sx={{
+                    '@media (max-width: 576px)': {
+                        '& .MuiDialog-container': {
+                            alignItems: 'flex-end',
+                        }
+                    }
+                }}
                 slotProps={{
                     paper: {
-                        sx: { borderRadius: '10px', width: '750px' }
+                        sx: { 
+                            borderRadius: '10px', 
+                            width: '470px',
+                            '@media (max-width: 576px)': {
+                                width: '100%',
+                                height: '86%',
+                                maxHeight: '100% !important',
+                                maxWidth: '100% !important',
+                                margin: 0,
+                                borderRadius: '10px 10px 0 0',  
+                            }, 
+                        }
                     }
                 }}
             >
