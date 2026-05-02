@@ -7,7 +7,7 @@ import CommonTextfield from '../../shared/components/common/Textfield/CommonText
 import PhoneTextfield from '../../shared/components/common/Textfield/PhoneTextfield';
 import { CheckoutInformationGuest, CheckoutInformationUser, OrderCheckout, OrderDrawer, OrderMobileAppbar } from '../../features/order';
 
-const CheckoutOrderPage = () => {
+const CheckoutPage = () => {
 
     const [note, setNote] = useState(false);
 
@@ -89,4 +89,4 @@ const CheckoutOrderPage = () => {
     );
 };
 
-export default CheckoutOrderPage;
+export default CheckoutPage;
