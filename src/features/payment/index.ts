@@ -1,0 +1,1 @@
+export { default as FundinBanner } from './components/FundinBanner';

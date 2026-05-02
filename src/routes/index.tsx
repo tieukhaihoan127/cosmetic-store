@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom"
+import { useRoutes } from "react-router-dom";
 import { ClientRoutes } from "./ClientRoutes";
 import { AdminRoutes } from "./AdminRoutes";
 
@@ -13,4 +13,4 @@ const AppRoutes = () => {
   return element;
 }
 
-export default AppRoutes
+export default AppRoutes;

@@ -3,7 +3,8 @@ import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import Barcode from 'react-barcode';
 import { Link, Outlet } from 'react-router-dom';
-import ProfileTabs from '../components/ui/Carousel/ProfileTabs';
+import { ProfileTabs } from '../features/profile';
+
 
 const ProfileLayout = () => {
     return (
@@ -92,7 +93,7 @@ const ProfileLayout = () => {
                 <Outlet />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ProfileLayout
+export default ProfileLayout;

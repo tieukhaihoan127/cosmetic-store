@@ -1,26 +1,27 @@
 import type { RouteObject } from 'react-router-dom'
-import BrandPage from '../pages/BrandPage'
-import HomePage from '../pages/HomePage'
+import HomePage from '../pages/client/HomePage';
 import MainLayout from '../layouts/MainLayout'
-import ProductPage from '../pages/ProductPage'
-import CollectionPage from '../pages/CollectionPage'
-import ProductDetailPage from '../pages/ProductDetailPage'
-import ReviewPage from '../pages/ReviewPage'
-import StorePage from '../pages/StorePage'
-import HelpCenterPage from '../pages/HelpCenterPage'
-import QuestionPage from '../pages/QuestionPage'
-import OrderTrackingPage from '../pages/OrderTrackingPage'
-import OrderTrackingDetailPage from '../pages/OrderTrackingDetailPage'
-import PreviewOrderPage from '../pages/PreviewOrderPage'
-import CheckoutPage from '../pages/CheckoutPage'
-import ProfilePage from '../pages/ProfilePage'
-import ProfileLayout from '../layouts/ProfileLayout'
-import ProfileCouponPage from '../pages/ProfileCouponPage'
-import ProfileQuestionPage from '../pages/ProfileQuestionPage'
-import ProfileQuestionDetailPage from '../pages/ProfileQuestionDetailPage'
-import ProfileAddressPage from '../pages/ProfileAddressPage'
-import ProfileOrderStatusPage from '../pages/ProfileOrderStatusPage'
-import StoreDetailPage from '../pages/StoreDetailPage'
+import BrandPage from '../pages/client/BrandPage';
+import ProductPage from '../pages/client/ProductPage';
+import CollectionPage from '../pages/client/CollectionPage';
+import ProductDetailPage from '../pages/client/ProductDetailPage';
+import ReviewPage from '../pages/client/ReviewPage';
+import StorePage from '../pages/client/StorePage';
+import StoreDetailPage from '../pages/client/StoreDetailPage';
+import HelpCenterPage from '../pages/client/HelpCenterPage';
+import QuestionPage from '../pages/client/QuestionPage';
+import OrderTrackingPage from '../pages/client/OrderTrackingPage';
+import OrderTrackingDetailPage from '../pages/client/OrderTrackingDetailPage';
+import PreviewOrderPage from '../pages/client/PreviewOrderPage';
+import CheckoutPage from '../pages/client/CheckoutPage';
+import ProfileLayout from '../layouts/ProfileLayout';
+import ProfilePage from '../pages/client/ProfilePage';
+import ProfileCouponPage from '../pages/client/ProfileCouponPage';
+import ProfileQuestionPage from '../pages/client/ProfileQuestionPage';
+import ProfileQuestionDetailPage from '../pages/client/ProfileQuestionDetailPage';
+import ProfileOrderStatusPage from '../pages/client/ProfileOrderStatusPage';
+import ProfileAddressPage from '../pages/client/ProfileAddressPage';
+
 
 export const ClientRoutes : RouteObject[] = [
     {
